@@ -167,3 +167,16 @@ class AlertService:
                 logger.info(f"Alert ID {alert_id} acknowledged for user {alert['user_id']}.")
                 return True
         return False
+
+    def acknowledge_all_alerts(self) -> int:
+        """
+        Marks all active alerts as acknowledged in backend memory.
+        """
+        count = 0
+        for alert in self.alerts:
+            if not alert['acknowledged']:
+                alert['acknowledged'] = True
+                count += 1
+        logger.info(f"All {count} active alerts have been acknowledged.")
+        return count
+

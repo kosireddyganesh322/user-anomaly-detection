@@ -47,6 +47,12 @@ export function useUsers() {
     fetchUsers();
   }, [fetchUsers]);
 
+  useEffect(() => {
+    const handleRefresh = () => fetchUsers();
+    window.addEventListener("refresh-data", handleRefresh);
+    return () => window.removeEventListener("refresh-data", handleRefresh);
+  }, [fetchUsers]);
+
   return {
     users,
     total,

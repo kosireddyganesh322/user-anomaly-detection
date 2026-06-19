@@ -43,6 +43,19 @@ def get_users(
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to fetch users: {e}")
 
+@router.get("/departments")
+def get_departments(request: Request):
+    """
+    Get unique list of departments in the active dataset.
+    """
+    try:
+        data_service = request.app.state.data_service
+        if data_service.users_df.empty or 'department' not in data_service.users_df.columns:
+            return []
+        return sorted(data_service.users_df['department'].dropna().astype(str).unique().tolist())
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to fetch departments: {e}")
+
 @router.get("/{user_id}", response_model=UserResponse)
 def get_user_profile(user_id: str, request: Request):
     """

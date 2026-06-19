@@ -1,0 +1,101 @@
+user_id,name,email,role,department,team,manager,total_logins,total_logoffs,active_days,avg_logins_per_day,unique_pcs_used,after_hours_logins,weekend_logins,usb_connects,usb_disconnects,after_hours_usb,weekend_usb,login_device_ratio,after_hours_ratio,weekend_ratio
+1,Elena Bradley,1@company.com,Account Executive,Sales,Sales,36.0,5,5,5,1.0,1,2,1,3,3,1,0,1.6666666666666667,0.375,0.125
+2,Hugo Wallace,2@company.com,Software Engineer,Engineering,Engineering,7.0,3,3,3,1.0,1,2,1,3,3,4,2,1.0,1.0,0.5
+3,Madeline Ramirez,3@company.com,Sales Development Rep,Sales,Sales,36.0,0,0,0,0.0,0,0,0,2,2,0,0,0.0,0.0,0.0
+4,Mateo Taylor,4@company.com,HR Generalist,Human Resources,Human Resources,Unknown,3,3,3,1.0,1,2,0,4,4,2,2,0.75,0.5714285714285714,0.2857142857142857
+5,Kristin Harris,5@company.com,Support Team Lead,Customer Support,Customer Support,Unknown,4,4,4,1.0,1,3,2,2,2,2,2,2.0,0.8333333333333334,0.6666666666666666
+6,Keith Hart,6@company.com,Senior Software Engineer,Engineering,Engineering,7.0,8,8,8,1.0,2,4,1,1,1,1,0,8.0,0.5555555555555556,0.1111111111111111
+7,Tammy Morgan,7@company.com,Engineering Manager,Engineering,Engineering,Unknown,7,7,7,1.0,1,5,2,1,1,0,0,7.0,0.625,0.25
+8,Kathleen Cox,8@company.com,Marketing Specialist,Marketing,Marketing,21.0,0,0,0,0.0,0,0,0,1,1,2,2,0.0,2.0,2.0
+9,Peter Brown,9@company.com,DevOps Engineer,Engineering,Engineering,7.0,3,3,3,1.0,1,2,1,2,2,0,0,1.5,0.4,0.2
+10,Anita Lewis,10@company.com,Controller,Finance,Finance,40.0,6,6,6,1.0,3,2,1,2,2,1,0,3.0,0.375,0.125
+11,Jason Delgado,11@company.com,Office Manager,Operations,Operations,Unknown,4,4,4,1.0,1,4,1,1,1,0,0,4.0,0.8,0.2
+12,Gary Jordan,12@company.com,Product Designer,Product,Product,87.0,7,7,7,1.0,2,6,2,1,1,0,0,7.0,0.75,0.25
+13,Joshua Carpenter,13@company.com,Sales Representative,Sales,Sales,36.0,5,5,5,1.0,2,5,3,0,0,0,0,0.0,1.0,0.6
+14,Holly Hill,14@company.com,Support Team Lead,Customer Support,Customer Support,5.0,3,3,3,1.0,2,3,1,2,2,2,2,1.5,1.0,0.6
+15,Zoe Price,15@company.com,HR Generalist,Human Resources,Human Resources,4.0,4,4,4,1.0,2,2,2,2,2,2,2,2.0,0.6666666666666666,0.6666666666666666
+16,Ian Patterson,16@company.com,Software Engineer,Engineering,Engineering,7.0,4,4,4,1.0,1,3,3,2,2,0,0,2.0,0.5,0.5
+17,Miles Martin,17@company.com,QA Engineer,Engineering,Engineering,7.0,5,5,5,1.0,2,2,1,1,1,2,2,5.0,0.6666666666666666,0.5
+18,Stella Wright,18@company.com,Logistics Coordinator,Operations,Operations,11.0,2,2,2,1.0,1,1,0,4,4,2,2,0.5,0.5,0.3333333333333333
+19,Sara Fernandez,19@company.com,Engineering Manager,Engineering,Engineering,7.0,4,4,4,1.0,1,1,0,1,1,0,0,4.0,0.2,0.0
+20,Tyler Harper,20@company.com,Payroll Specialist,Finance,Finance,40.0,2,2,2,1.0,1,0,0,3,3,0,0,0.6666666666666666,0.0,0.0
+21,Kimberly Dunn,21@company.com,Brand Manager,Marketing,Marketing,Unknown,1,1,1,1.0,1,1,0,2,2,0,0,0.5,0.3333333333333333,0.0
+22,William Arnold,22@company.com,Recruiter,Human Resources,Human Resources,4.0,7,7,7,1.0,1,5,1,5,5,5,4,1.4,0.8333333333333334,0.4166666666666667
+23,Evelyn Butler,23@company.com,Senior Software Engineer,Engineering,Engineering,7.0,8,8,8,1.0,4,6,1,2,2,1,0,4.0,0.7,0.1
+24,Andrea Valdez,24@company.com,SEO Analyst,Marketing,Marketing,21.0,3,3,3,1.0,2,1,1,3,3,1,0,1.0,0.3333333333333333,0.16666666666666666
+25,Adrian Chen,25@company.com,Account Executive,Sales,Sales,36.0,1,1,1,1.0,1,1,0,1,1,2,2,1.0,1.5,1.0
+26,Ella Lynch,26@company.com,Support Specialist,Customer Support,Customer Support,5.0,7,7,7,1.0,1,6,2,3,3,2,2,2.3333333333333335,0.8,0.4
+27,Pamela Hughes,27@company.com,Logistics Coordinator,Operations,Operations,11.0,4,4,4,1.0,1,3,1,2,2,2,2,2.0,0.8333333333333334,0.5
+28,Daniel Jones,28@company.com,Customer Success Manager,Customer Support,Customer Support,5.0,6,6,6,1.0,2,4,2,2,2,0,0,3.0,0.5,0.25
+29,Spencer Harrison,29@company.com,QA Engineer,Engineering,Engineering,7.0,4,4,4,1.0,1,4,2,0,0,0,0,0.0,1.0,0.5
+30,Brayden Diaz,30@company.com,Support Specialist,Customer Support,Customer Support,5.0,8,8,8,1.0,3,5,4,1,1,0,0,8.0,0.5555555555555556,0.4444444444444444
+31,Donald Berry,31@company.com,Product Designer,Product,Product,87.0,2,2,2,1.0,1,2,2,4,4,6,4,0.5,1.3333333333333333,1.0
+32,Oliver Patel,32@company.com,Senior Software Engineer,Engineering,Engineering,7.0,2,2,2,1.0,1,1,1,1,1,0,0,2.0,0.3333333333333333,0.3333333333333333
+33,Kelly Ortiz,33@company.com,Payroll Specialist,Finance,Finance,40.0,5,5,5,1.0,2,5,2,1,1,0,0,5.0,0.8333333333333334,0.3333333333333333
+34,Rose Long,34@company.com,DevOps Engineer,Engineering,Engineering,7.0,5,5,5,1.0,2,4,3,1,1,2,2,5.0,1.0,0.8333333333333334
+35,Jasper Herrera,35@company.com,Support Team Lead,Customer Support,Customer Support,5.0,3,3,3,1.0,1,1,1,4,4,1,0,0.75,0.2857142857142857,0.14285714285714285
+36,Dominic Barnes,36@company.com,VP of Sales,Sales,Sales,Unknown,2,2,2,1.0,2,2,2,3,3,0,0,0.6666666666666666,0.4,0.4
+37,Ryker Shaw,37@company.com,Senior Software Engineer,Engineering,Engineering,7.0,9,9,9,1.0,4,4,2,3,3,1,0,3.0,0.4166666666666667,0.16666666666666666
+38,Max Carter,38@company.com,Marketing Specialist,Marketing,Marketing,21.0,3,3,3,1.0,1,2,2,1,1,1,0,3.0,0.75,0.5
+39,Emilia Wells,39@company.com,HR Generalist,Human Resources,Human Resources,4.0,4,4,4,1.0,2,3,0,1,1,1,0,4.0,0.8,0.0
+40,Evan Wagner,40@company.com,Finance Manager,Finance,Finance,Unknown,3,3,3,1.0,1,2,2,0,0,0,0,0.0,0.6666666666666666,0.6666666666666666
+41,Carolyn Wong,41@company.com,Product Owner,Product,Product,87.0,6,6,5,1.2,1,2,0,6,6,2,2,1.0,0.3333333333333333,0.16666666666666666
+42,Madelyn French,42@company.com,QA Engineer,Engineering,Engineering,7.0,10,10,9,1.1111111111111112,1,6,4,1,1,0,0,10.0,0.5454545454545454,0.36363636363636365
+43,Lois Lawrence,43@company.com,Controller,Finance,Finance,40.0,8,8,8,1.0,1,4,2,1,1,2,2,8.0,0.6666666666666666,0.4444444444444444
+44,Becky Montgomery,44@company.com,Content Strategist,Marketing,Marketing,21.0,3,3,3,1.0,2,2,2,4,4,4,4,0.75,0.8571428571428571,0.8571428571428571
+45,Calvin Hansen,45@company.com,Engineering Manager,Engineering,Engineering,7.0,2,2,2,1.0,1,2,1,4,4,4,4,0.5,1.0,0.8333333333333334
+46,Mariah Kim,46@company.com,DevOps Engineer,Engineering,Engineering,7.0,9,9,9,1.0,4,6,2,8,8,5,4,1.125,0.6470588235294118,0.35294117647058826
+47,Bentley Morales,47@company.com,Content Strategist,Marketing,Marketing,21.0,6,6,6,1.0,2,4,3,3,3,3,2,2.0,0.7777777777777778,0.5555555555555556
+48,James Walker,48@company.com,Support Agent,Customer Support,Customer Support,5.0,7,7,7,1.0,1,4,1,5,5,5,4,1.4,0.75,0.4166666666666667
+49,Hannah Flores,49@company.com,Support Team Lead,Customer Support,Customer Support,5.0,6,6,6,1.0,2,2,1,2,2,0,0,3.0,0.25,0.125
+50,Mark Matthews,50@company.com,Support Agent,Customer Support,Customer Support,5.0,10,10,10,1.0,4,3,2,5,5,3,2,2.0,0.4,0.26666666666666666
+51,Nina Coleman,51@company.com,Staff Engineer,Engineering,Engineering,7.0,7,7,7,1.0,2,6,1,2,2,3,2,3.5,1.0,0.3333333333333333
+52,Karen Hale,52@company.com,Accountant,Finance,Finance,40.0,5,5,5,1.0,1,2,2,1,1,2,2,5.0,0.6666666666666666,0.6666666666666666
+53,Eva Stone,53@company.com,DevOps Engineer,Engineering,Engineering,7.0,3,3,3,1.0,2,2,1,3,3,4,4,1.0,1.0,0.8333333333333334
+54,Catherine Gomez,54@company.com,Engineering Manager,Engineering,Engineering,7.0,5,5,5,1.0,1,4,3,3,3,2,2,1.6666666666666667,0.75,0.625
+55,Stacy Newman,55@company.com,Staff Engineer,Engineering,Engineering,7.0,5,5,5,1.0,3,3,2,4,4,4,4,1.25,0.7777777777777778,0.6666666666666666
+56,Harper Stewart,56@company.com,QA Engineer,Engineering,Engineering,7.0,6,6,6,1.0,1,3,2,1,1,1,0,6.0,0.5714285714285714,0.2857142857142857
+57,Declan Young,57@company.com,Engineering Manager,Engineering,Engineering,7.0,1,1,1,1.0,1,1,1,2,2,4,4,0.5,1.6666666666666667,1.6666666666666667
+58,Frank Hamilton,58@company.com,SEO Analyst,Marketing,Marketing,21.0,5,5,5,1.0,1,3,3,3,3,1,0,1.6666666666666667,0.5,0.375
+59,Kaden Torres,59@company.com,DevOps Engineer,Engineering,Engineering,7.0,6,6,6,1.0,2,3,0,3,3,3,0,2.0,0.6666666666666666,0.0
+60,Sean Edwards,60@company.com,DevOps Engineer,Engineering,Engineering,7.0,6,6,6,1.0,1,5,3,4,4,1,0,1.5,0.6,0.3
+61,Penelope Wood,61@company.com,Support Agent,Customer Support,Customer Support,5.0,2,2,2,1.0,1,1,1,1,1,2,2,2.0,1.0,1.0
+62,Veronica Gonzales,62@company.com,Support Agent,Customer Support,Customer Support,5.0,5,5,5,1.0,2,3,0,5,5,3,2,1.0,0.6,0.2
+63,Danielle Duncan,63@company.com,Sales Manager,Sales,Sales,36.0,4,4,4,1.0,1,2,2,2,2,1,0,2.0,0.5,0.3333333333333333
+64,Anthony Cunningham,64@company.com,Finance Manager,Finance,Finance,40.0,5,5,5,1.0,1,3,3,2,2,2,2,2.5,0.7142857142857143,0.7142857142857143
+65,Emmett Cooper,65@company.com,QA Engineer,Engineering,Engineering,7.0,5,5,5,1.0,1,2,0,0,0,0,0,0.0,0.4,0.0
+66,Juan Sanders,66@company.com,VP of Sales,Sales,Sales,36.0,4,4,4,1.0,1,3,1,4,4,2,2,1.0,0.625,0.375
+67,Brandy King,67@company.com,Office Manager,Operations,Operations,11.0,7,7,7,1.0,1,3,0,2,2,1,0,3.5,0.4444444444444444,0.0
+68,Abigail Warren,68@company.com,Product Designer,Product,Product,87.0,6,6,6,1.0,3,3,2,2,2,4,4,3.0,0.875,0.75
+69,Sarah Vasquez,69@company.com,HR Generalist,Human Resources,Human Resources,4.0,9,9,9,1.0,1,3,2,0,0,0,0,0.0,0.3333333333333333,0.2222222222222222
+70,Beverly Jimenez,70@company.com,Engineering Manager,Engineering,Engineering,7.0,2,2,2,1.0,1,2,1,7,7,6,6,0.2857142857142857,0.8888888888888888,0.7777777777777778
+71,David Figueroa,71@company.com,Software Engineer,Engineering,Engineering,7.0,8,8,7,1.1428571428571428,1,4,4,3,3,2,2,2.6666666666666665,0.5454545454545454,0.5454545454545454
+72,Leah Anderson,72@company.com,UX Researcher,Product,Product,87.0,6,6,6,1.0,2,3,1,3,3,0,0,2.0,0.3333333333333333,0.1111111111111111
+73,Brooklyn Carr,73@company.com,Office Manager,Operations,Operations,11.0,7,7,7,1.0,3,4,2,2,2,0,0,3.5,0.4444444444444444,0.2222222222222222
+74,Isabella Porter,74@company.com,Recruiter,Human Resources,Human Resources,4.0,4,4,4,1.0,1,3,1,2,2,1,0,2.0,0.6666666666666666,0.16666666666666666
+75,Angela Jensen,75@company.com,Finance Manager,Finance,Finance,40.0,7,7,7,1.0,2,6,3,2,2,2,2,3.5,0.8888888888888888,0.5555555555555556
+76,Faith Bell,76@company.com,Content Strategist,Marketing,Marketing,21.0,6,6,6,1.0,1,3,1,1,1,0,0,6.0,0.42857142857142855,0.14285714285714285
+77,Brody Moore,77@company.com,QA Engineer,Engineering,Engineering,7.0,5,5,5,1.0,1,3,1,3,3,1,0,1.6666666666666667,0.5,0.125
+78,Henry Burke,78@company.com,Senior Software Engineer,Engineering,Engineering,7.0,3,3,3,1.0,1,0,0,6,6,2,2,0.5,0.2222222222222222,0.2222222222222222
+79,Melissa Goodwin,79@company.com,QA Engineer,Engineering,Engineering,7.0,4,4,4,1.0,2,3,2,3,3,2,2,1.3333333333333333,0.7142857142857143,0.5714285714285714
+80,Ann Williams,80@company.com,Sales Development Rep,Sales,Sales,36.0,5,5,5,1.0,2,5,1,7,7,5,4,0.7142857142857143,0.8333333333333334,0.4166666666666667
+81,Terry Robertson,81@company.com,Accountant,Finance,Finance,40.0,7,7,7,1.0,2,2,2,4,4,1,0,1.75,0.2727272727272727,0.18181818181818182
+82,Courtney Hanson,82@company.com,Sales Development Rep,Sales,Sales,36.0,10,10,10,1.0,2,7,4,0,0,0,0,0.0,0.7,0.4
+83,Hunter Sullivan,83@company.com,People Operations Specialist,Human Resources,Human Resources,4.0,4,4,4,1.0,1,3,2,4,4,4,4,1.0,0.875,0.75
+84,Willie Richards,84@company.com,Support Specialist,Customer Support,Customer Support,5.0,6,6,6,1.0,3,5,3,5,5,0,0,1.2,0.45454545454545453,0.2727272727272727
+85,Jamie Johnson,85@company.com,Account Executive,Sales,Sales,36.0,4,4,4,1.0,1,2,2,2,2,0,0,2.0,0.3333333333333333,0.3333333333333333
+86,Margaret Parker,86@company.com,Support Specialist,Customer Support,Customer Support,5.0,9,9,9,1.0,2,3,0,2,2,0,0,4.5,0.2727272727272727,0.0
+87,Betty Salazar,87@company.com,Product Manager,Product,Product,Unknown,8,8,8,1.0,2,5,3,1,1,1,0,8.0,0.6666666666666666,0.3333333333333333
+88,Connie Rodriguez,88@company.com,VP of Sales,Sales,Sales,36.0,3,3,3,1.0,1,3,2,2,2,2,2,1.5,1.0,0.8
+89,Liam Castillo,89@company.com,Staff Engineer,Engineering,Engineering,7.0,3,3,3,1.0,1,2,2,2,2,0,0,1.5,0.4,0.4
+90,Lawrence Allen,90@company.com,Senior Software Engineer,Engineering,Engineering,7.0,9,9,9,1.0,2,6,2,3,3,0,0,3.0,0.5,0.16666666666666666
+91,Peyton Lee,91@company.com,Engineering Manager,Engineering,Engineering,7.0,8,8,8,1.0,1,4,1,0,0,0,0,0.0,0.5,0.125
+92,Ellen Johnston,92@company.com,Product Designer,Product,Product,87.0,7,7,7,1.0,1,4,0,1,1,2,2,7.0,0.75,0.25
+93,Jesse Aguilar,93@company.com,Software Engineer,Engineering,Engineering,7.0,5,5,5,1.0,1,4,1,4,4,2,0,1.25,0.6666666666666666,0.1111111111111111
+94,Owen Hernandez,94@company.com,Software Engineer,Engineering,Engineering,7.0,5,5,5,1.0,1,4,2,1,1,2,2,5.0,1.0,0.6666666666666666
+95,Vanessa Sandoval,95@company.com,DevOps Engineer,Engineering,Engineering,7.0,4,4,4,1.0,1,2,0,6,6,7,6,0.6666666666666666,0.9,0.6
+96,Lincoln Simmons,96@company.com,Account Executive,Sales,Sales,36.0,2,2,2,1.0,1,2,1,5,5,2,0,0.4,0.5714285714285714,0.14285714285714285
+97,Kaiden Ray,97@company.com,Senior Software Engineer,Engineering,Engineering,7.0,5,5,5,1.0,1,2,0,1,1,1,0,5.0,0.5,0.0
+98,Debra Castro,98@company.com,Marketing Specialist,Marketing,Marketing,21.0,8,8,8,1.0,1,7,3,3,3,0,0,2.6666666666666665,0.6363636363636364,0.2727272727272727
+99,Emery Perez,99@company.com,DevOps Engineer,Engineering,Engineering,7.0,0,0,0,0.0,0,0,0,3,3,1,0,0.0,0.3333333333333333,0.0
+100,Jeremy Reed,100@company.com,Payroll Specialist,Finance,Finance,40.0,7,7,7,1.0,1,4,1,1,1,1,0,7.0,0.625,0.125

@@ -4,6 +4,7 @@ import Dashboard from "./pages/Dashboard";
 import UserExplorer from "./pages/UserExplorer";
 import Alerts from "./pages/Alerts";
 import Analytics from "./pages/Analytics";
+import DatasetManager from "./pages/DatasetManager";
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
         <Route path="/users"         element={<UserExplorer />} />
         <Route path="/alerts"        element={<Alerts />} />
         <Route path="/analytics"     element={<Analytics />} />
+        <Route path="/datasets"      element={<DatasetManager />} />
       </Routes>
     </Layout>
   );

@@ -1,12 +1,13 @@
 import { NavLink } from "react-router-dom";
-import { LayoutDashboard, Users, BellRing, BarChart3, ShieldAlert } from "lucide-react";
+import { LayoutDashboard, Users, BellRing, BarChart3, ShieldAlert, Database } from "lucide-react";
 import clsx from "clsx";
 
 const nav = [
-  { to: "/",          label: "Dashboard",     icon: LayoutDashboard },
-  { to: "/users",     label: "User Explorer", icon: Users           },
-  { to: "/alerts",    label: "Alerts",        icon: BellRing        },
-  { to: "/analytics", label: "Analytics",     icon: BarChart3       },
+  { to: "/",          label: "Dashboard",       icon: LayoutDashboard },
+  { to: "/users",     label: "User Explorer",   icon: Users           },
+  { to: "/alerts",    label: "Alerts",          icon: BellRing        },
+  { to: "/analytics", label: "Analytics",       icon: BarChart3       },
+  { to: "/datasets",  label: "Dataset Manager", icon: Database        },
 ];
 
 export default function Sidebar() {

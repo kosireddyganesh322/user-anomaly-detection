@@ -2,7 +2,7 @@ import logging
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from backend.app.api.routes import users, alerts, analytics, predictions, reports
+from backend.app.api.routes import users, alerts, analytics, predictions, reports, datasets
 from backend.app.services.data_service import DataService
 
 # Set up logging format
@@ -16,6 +16,15 @@ async def lifespan(app: FastAPI):
     service = DataService()
     app.state.data_service = service
     logger.info("Lifespan setup completed: DataService state loaded.")
+    
+    # Pre-populate CERT metadata if missing
+    try:
+        from backend.app.services.dataset_service import DatasetService
+        DatasetService(service)
+        logger.info("Lifespan setup: CERT Dataset metadata initialized.")
+    except Exception as e:
+        logger.error(f"Lifespan setup warning: Failed to initialize CERT metadata: {e}")
+        
     yield
     # Cleanup on shutdown
     logger.info("Lifespan shutdown: Cleaning state.")
@@ -41,6 +50,7 @@ app.include_router(alerts.router,      prefix="/api/alerts",      tags=["Alerts"
 app.include_router(analytics.router,   prefix="/api/analytics",   tags=["Analytics"])
 app.include_router(predictions.router, prefix="/api/predictions", tags=["Predictions"])
 app.include_router(reports.router,     prefix="/api/reports",     tags=["Reports"])
+app.include_router(datasets.router,    prefix="/api/datasets",    tags=["Datasets"])
 
 # Mount extra endpoints requested by the user
 @app.get("/api/dashboard/overview", tags=["Dashboard"])

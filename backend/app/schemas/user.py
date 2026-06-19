@@ -16,6 +16,11 @@ class UserResponse(UserBase):
     anomaly_score: Optional[float] = 0.0
     anomaly_label: Optional[str] = "Normal"
     security_status: Optional[str] = "Normal"
+    anomaly_reason: Optional[str] = "No Significant Anomalies Detected"
+    after_hours_ratio: Optional[float] = 0.0
+    weekend_ratio: Optional[float] = 0.0
+    usb_connects: Optional[int] = 0
+    unique_pcs_used: Optional[int] = 0
 
     class Config:
         from_attributes = True

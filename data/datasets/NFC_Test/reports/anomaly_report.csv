@@ -1,0 +1,4 @@
+user_id,anomaly_score,anomaly_label
+NFC1001,0.12767961337037032,Normal
+NFC1002,-0.00534200988930611,Suspicious
+NFC1003,0.048078089003754765,Normal

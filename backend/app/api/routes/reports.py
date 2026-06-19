@@ -72,9 +72,12 @@ class NumberedCanvas(canvas.Canvas):
 
 
 @router.get("/export/csv")
-def export_csv(type: str = Query(..., description="Report type: profile, anomalies, or risk")):
+def export_csv(
+    request: Request,
+    type: str = Query(..., description="Report type: profile, anomalies, or risk")
+):
     """
-    Stream and export raw CSV security files from disk.
+    Stream and export raw CSV security files from disk for the currently active dataset.
     """
     filename_map = {
         "profile": "final_security_profile.csv",
@@ -85,8 +88,22 @@ def export_csv(type: str = Query(..., description="Report type: profile, anomali
     if type not in filename_map:
         raise HTTPException(status_code=400, detail="Invalid report type. Choose: 'profile', 'anomalies', or 'risk'")
     
-    # Locate target file
-    possible_dirs = ["../data/reports/", "data/reports/", "../data/reports/", "data/reports/"]
+    try:
+        data_service = request.app.state.data_service
+        current_dataset = data_service.current_dataset
+    except Exception as e:
+        logger.error(f"Failed to access DataService: {e}")
+        raise HTTPException(status_code=500, detail="Security database connection failure.")
+        
+    # Resolve the directory of the current dataset
+    if current_dataset == "CERT":
+        possible_dirs = ["data/datasets/CERT/reports", "data/reports", "../data/datasets/CERT/reports", "../data/reports"]
+    else:
+        possible_dirs = [
+            f"data/datasets/{current_dataset}/reports",
+            f"../data/datasets/{current_dataset}/reports"
+        ]
+        
     target_file = None
     for d in possible_dirs:
         test_path = os.path.join(d, filename_map[type])
@@ -95,12 +112,12 @@ def export_csv(type: str = Query(..., description="Report type: profile, anomali
             break
             
     if not target_file:
-        raise HTTPException(status_code=404, detail=f"Source CSV report file '{filename_map[type]}' not found on security vault.")
+        raise HTTPException(status_code=404, detail=f"Source CSV report file '{filename_map[type]}' not found for dataset '{current_dataset}'.")
         
     return FileResponse(
         path=target_file,
         media_type="text/csv",
-        filename=filename_map[type]
+        filename=f"{current_dataset.lower()}_{filename_map[type]}"
     )
 
 

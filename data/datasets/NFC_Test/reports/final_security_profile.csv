@@ -1,0 +1,4 @@
+user_id,department,role,risk_score,risk_level,anomaly_score,anomaly_label,security_status,anomaly_reason
+NFC1001,Fuel Fabrication,Production Engineer,10.55,Low,0.1276796133703703,Normal,Normal,No Significant Anomalies Detected
+NFC1002,Security Operations,Security Guard,1.9,Low,-0.0053420098893061,Suspicious,Normal,Multiple Behavioral Indicators Detected: Elevated Off-Hours Logon Schedules + Excessive Weekend Activity
+NFC1003,Quality Assurance,QA Inspector,10.55,Low,0.0480780890037547,Normal,Normal,No Significant Anomalies Detected

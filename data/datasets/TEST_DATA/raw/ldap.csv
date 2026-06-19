@@ -1,0 +1,101 @@
+user_id,supervisor,team,department,role,business_unit,functional_unit
+1,36.0,Sales,Sales,Account Executive,1,1
+2,7.0,Engineering,Engineering,Software Engineer,1,1
+3,36.0,Sales,Sales,Sales Development Rep,1,1
+4,,Human Resources,Human Resources,HR Generalist,1,1
+5,,Customer Support,Customer Support,Support Team Lead,1,1
+6,7.0,Engineering,Engineering,Senior Software Engineer,1,1
+7,,Engineering,Engineering,Engineering Manager,1,1
+8,21.0,Marketing,Marketing,Marketing Specialist,1,1
+9,7.0,Engineering,Engineering,DevOps Engineer,1,1
+10,40.0,Finance,Finance,Controller,1,1
+11,,Operations,Operations,Office Manager,1,1
+12,87.0,Product,Product,Product Designer,1,1
+13,36.0,Sales,Sales,Sales Representative,1,1
+14,5.0,Customer Support,Customer Support,Support Team Lead,1,1
+15,4.0,Human Resources,Human Resources,HR Generalist,1,1
+16,7.0,Engineering,Engineering,Software Engineer,1,1
+17,7.0,Engineering,Engineering,QA Engineer,1,1
+18,11.0,Operations,Operations,Logistics Coordinator,1,1
+19,7.0,Engineering,Engineering,Engineering Manager,1,1
+20,40.0,Finance,Finance,Payroll Specialist,1,1
+21,,Marketing,Marketing,Brand Manager,1,1
+22,4.0,Human Resources,Human Resources,Recruiter,1,1
+23,7.0,Engineering,Engineering,Senior Software Engineer,1,1
+24,21.0,Marketing,Marketing,SEO Analyst,1,1
+25,36.0,Sales,Sales,Account Executive,1,1
+26,5.0,Customer Support,Customer Support,Support Specialist,1,1
+27,11.0,Operations,Operations,Logistics Coordinator,1,1
+28,5.0,Customer Support,Customer Support,Customer Success Manager,1,1
+29,7.0,Engineering,Engineering,QA Engineer,1,1
+30,5.0,Customer Support,Customer Support,Support Specialist,1,1
+31,87.0,Product,Product,Product Designer,1,1
+32,7.0,Engineering,Engineering,Senior Software Engineer,1,1
+33,40.0,Finance,Finance,Payroll Specialist,1,1
+34,7.0,Engineering,Engineering,DevOps Engineer,1,1
+35,5.0,Customer Support,Customer Support,Support Team Lead,1,1
+36,,Sales,Sales,VP of Sales,1,1
+37,7.0,Engineering,Engineering,Senior Software Engineer,1,1
+38,21.0,Marketing,Marketing,Marketing Specialist,1,1
+39,4.0,Human Resources,Human Resources,HR Generalist,1,1
+40,,Finance,Finance,Finance Manager,1,1
+41,87.0,Product,Product,Product Owner,1,1
+42,7.0,Engineering,Engineering,QA Engineer,1,1
+43,40.0,Finance,Finance,Controller,1,1
+44,21.0,Marketing,Marketing,Content Strategist,1,1
+45,7.0,Engineering,Engineering,Engineering Manager,1,1
+46,7.0,Engineering,Engineering,DevOps Engineer,1,1
+47,21.0,Marketing,Marketing,Content Strategist,1,1
+48,5.0,Customer Support,Customer Support,Support Agent,1,1
+49,5.0,Customer Support,Customer Support,Support Team Lead,1,1
+50,5.0,Customer Support,Customer Support,Support Agent,1,1
+51,7.0,Engineering,Engineering,Staff Engineer,1,1
+52,40.0,Finance,Finance,Accountant,1,1
+53,7.0,Engineering,Engineering,DevOps Engineer,1,1
+54,7.0,Engineering,Engineering,Engineering Manager,1,1
+55,7.0,Engineering,Engineering,Staff Engineer,1,1
+56,7.0,Engineering,Engineering,QA Engineer,1,1
+57,7.0,Engineering,Engineering,Engineering Manager,1,1
+58,21.0,Marketing,Marketing,SEO Analyst,1,1
+59,7.0,Engineering,Engineering,DevOps Engineer,1,1
+60,7.0,Engineering,Engineering,DevOps Engineer,1,1
+61,5.0,Customer Support,Customer Support,Support Agent,1,1
+62,5.0,Customer Support,Customer Support,Support Agent,1,1
+63,36.0,Sales,Sales,Sales Manager,1,1
+64,40.0,Finance,Finance,Finance Manager,1,1
+65,7.0,Engineering,Engineering,QA Engineer,1,1
+66,36.0,Sales,Sales,VP of Sales,1,1
+67,11.0,Operations,Operations,Office Manager,1,1
+68,87.0,Product,Product,Product Designer,1,1
+69,4.0,Human Resources,Human Resources,HR Generalist,1,1
+70,7.0,Engineering,Engineering,Engineering Manager,1,1
+71,7.0,Engineering,Engineering,Software Engineer,1,1
+72,87.0,Product,Product,UX Researcher,1,1
+73,11.0,Operations,Operations,Office Manager,1,1
+74,4.0,Human Resources,Human Resources,Recruiter,1,1
+75,40.0,Finance,Finance,Finance Manager,1,1
+76,21.0,Marketing,Marketing,Content Strategist,1,1
+77,7.0,Engineering,Engineering,QA Engineer,1,1
+78,7.0,Engineering,Engineering,Senior Software Engineer,1,1
+79,7.0,Engineering,Engineering,QA Engineer,1,1
+80,36.0,Sales,Sales,Sales Development Rep,1,1
+81,40.0,Finance,Finance,Accountant,1,1
+82,36.0,Sales,Sales,Sales Development Rep,1,1
+83,4.0,Human Resources,Human Resources,People Operations Specialist,1,1
+84,5.0,Customer Support,Customer Support,Support Specialist,1,1
+85,36.0,Sales,Sales,Account Executive,1,1
+86,5.0,Customer Support,Customer Support,Support Specialist,1,1
+87,,Product,Product,Product Manager,1,1
+88,36.0,Sales,Sales,VP of Sales,1,1
+89,7.0,Engineering,Engineering,Staff Engineer,1,1
+90,7.0,Engineering,Engineering,Senior Software Engineer,1,1
+91,7.0,Engineering,Engineering,Engineering Manager,1,1
+92,87.0,Product,Product,Product Designer,1,1
+93,7.0,Engineering,Engineering,Software Engineer,1,1
+94,7.0,Engineering,Engineering,Software Engineer,1,1
+95,7.0,Engineering,Engineering,DevOps Engineer,1,1
+96,36.0,Sales,Sales,Account Executive,1,1
+97,7.0,Engineering,Engineering,Senior Software Engineer,1,1
+98,21.0,Marketing,Marketing,Marketing Specialist,1,1
+99,7.0,Engineering,Engineering,DevOps Engineer,1,1
+100,40.0,Finance,Finance,Payroll Specialist,1,1

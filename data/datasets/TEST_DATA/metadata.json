@@ -1,0 +1,12 @@
+{
+    "name": "TEST_DATA",
+    "upload_date": "2026-06-19 11:02:14",
+    "total_users": 100,
+    "total_records": 1500,
+    "status": "Success",
+    "departments": 8,
+    "date_range": "2025-06-19 to 2026-06-17",
+    "records_processed": 1500,
+    "missing_values_count": 508,
+    "data_quality_score": 94.6
+}

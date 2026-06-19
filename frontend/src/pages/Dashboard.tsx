@@ -106,6 +106,8 @@ export default function Dashboard() {
 
   useEffect(() => {
     fetchOverview();
+    window.addEventListener("refresh-data", fetchOverview);
+    return () => window.removeEventListener("refresh-data", fetchOverview);
   }, []);
 
   if (loading) {

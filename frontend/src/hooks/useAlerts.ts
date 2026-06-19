@@ -58,6 +58,17 @@ export function useAlerts() {
       });
   }, []);
 
+  const acknowledgeAllAlerts = useCallback(() => {
+    return alertsApi.acknowledgeAll()
+      .then(() => {
+        setAlerts(prev => prev.map(a => ({ ...a, acknowledged: true })));
+      })
+      .catch((err) => {
+        console.error("Failed to acknowledge all alerts:", err);
+        throw err;
+      });
+  }, []);
+
   useEffect(() => {
     fetchAlertData();
   }, [fetchAlertData]);
@@ -75,6 +86,7 @@ export function useAlerts() {
     setAcknowledgedFilter,
     setSearch,
     acknowledgeAlert,
+    acknowledgeAllAlerts,
     refresh: fetchAlertData
   };
 }

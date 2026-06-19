@@ -14,5 +14,5 @@ echo [INFO] Activating virtual environment and verifying packages...
 .venv\Scripts\pip.exe install -r backend\requirements.txt
 
 echo [INFO] Starting FastAPI App via Uvicorn...
-.venv\Scripts\python.exe -m uvicorn backend.app.main:app --host 127.0.0.1 --port 8000 --reload
+.venv\Scripts\python.exe -m uvicorn backend.app.main:app --host 127.0.0.1 --port 8000 --reload --reload-dir backend
 pause

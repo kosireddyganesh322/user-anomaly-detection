@@ -1,0 +1,12 @@
+{
+    "name": "CERT",
+    "upload_date": "2026-06-17 00:00:00",
+    "total_users": 4000,
+    "total_records": 3534287,
+    "status": "Success",
+    "departments": 12,
+    "date_range": "2010-01-02 to 2011-06-01",
+    "records_processed": 3534287,
+    "missing_values_count": 0,
+    "data_quality_score": 100
+}

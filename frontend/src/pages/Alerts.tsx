@@ -16,7 +16,16 @@ export default function Alerts() {
     setAcknowledgedFilter,
     setSearch,
     acknowledgeAlert,
+    acknowledgeAllAlerts,
+    refresh,
   } = useAlerts();
+
+  useEffect(() => {
+    const handleRefresh = () => refresh();
+    window.addEventListener("refresh-data", handleRefresh);
+    return () => window.removeEventListener("refresh-data", handleRefresh);
+  }, [refresh]);
+
 
   const [activeTab, setActiveTab] = useState<"alerts" | "suspicious" | "high-risk">("alerts");
   const [ackProgressId, setAckProgressId] = useState<number | null>(null);
@@ -41,6 +50,22 @@ export default function Alerts() {
     acknowledgeAlert(id)
       .catch((err) => {
         alert("Failed to acknowledge alert. Please try again.");
+      })
+      .finally(() => {
+        setAckProgressId(null);
+      });
+  };
+
+  const handleAcknowledgeAll = () => {
+    if (!window.confirm("Are you sure you want to acknowledge all active alerts?")) return;
+    setAckProgressId(-1); // -1 represents bulk acknowledgment progress
+    acknowledgeAllAlerts()
+      .then(() => {
+        // Refresh unread count globally
+        window.dispatchEvent(new Event("refresh-data"));
+      })
+      .catch((err) => {
+        alert("Failed to acknowledge all alerts. Please try again.");
       })
       .finally(() => {
         setAckProgressId(null);
@@ -187,6 +212,16 @@ export default function Alerts() {
                   <option value="acknowledged">Acknowledged Alerts</option>
                   <option value="all">All Alerts</option>
                 </select>
+
+                {alerts.some((a) => !a.acknowledged) && (
+                  <button
+                    onClick={handleAcknowledgeAll}
+                    disabled={ackProgressId !== null}
+                    className="bg-brand-500 hover:bg-brand-600 text-white rounded-lg px-4 py-2 text-sm font-semibold transition-colors disabled:opacity-50 flex items-center justify-center whitespace-nowrap"
+                  >
+                    {ackProgressId === -1 ? "Acknowledging..." : "Acknowledge All"}
+                  </button>
+                )}
               </div>
             </div>
 

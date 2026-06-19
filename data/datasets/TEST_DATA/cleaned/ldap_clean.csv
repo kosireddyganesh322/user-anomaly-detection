@@ -1,0 +1,101 @@
+user_id,department,title,manager
+1,1 / 1 / Sales / Sales,Account Executive,36.0
+2,1 / 1 / Engineering / Engineering,Software Engineer,7.0
+3,1 / 1 / Sales / Sales,Sales Development Rep,36.0
+4,1 / 1 / Human Resources / Human Resources,HR Generalist,Unknown
+5,1 / 1 / Customer Support / Customer Support,Support Team Lead,Unknown
+6,1 / 1 / Engineering / Engineering,Senior Software Engineer,7.0
+7,1 / 1 / Engineering / Engineering,Engineering Manager,Unknown
+8,1 / 1 / Marketing / Marketing,Marketing Specialist,21.0
+9,1 / 1 / Engineering / Engineering,DevOps Engineer,7.0
+10,1 / 1 / Finance / Finance,Controller,40.0
+11,1 / 1 / Operations / Operations,Office Manager,Unknown
+12,1 / 1 / Product / Product,Product Designer,87.0
+13,1 / 1 / Sales / Sales,Sales Representative,36.0
+14,1 / 1 / Customer Support / Customer Support,Support Team Lead,5.0
+15,1 / 1 / Human Resources / Human Resources,HR Generalist,4.0
+16,1 / 1 / Engineering / Engineering,Software Engineer,7.0
+17,1 / 1 / Engineering / Engineering,QA Engineer,7.0
+18,1 / 1 / Operations / Operations,Logistics Coordinator,11.0
+19,1 / 1 / Engineering / Engineering,Engineering Manager,7.0
+20,1 / 1 / Finance / Finance,Payroll Specialist,40.0
+21,1 / 1 / Marketing / Marketing,Brand Manager,Unknown
+22,1 / 1 / Human Resources / Human Resources,Recruiter,4.0
+23,1 / 1 / Engineering / Engineering,Senior Software Engineer,7.0
+24,1 / 1 / Marketing / Marketing,SEO Analyst,21.0
+25,1 / 1 / Sales / Sales,Account Executive,36.0
+26,1 / 1 / Customer Support / Customer Support,Support Specialist,5.0
+27,1 / 1 / Operations / Operations,Logistics Coordinator,11.0
+28,1 / 1 / Customer Support / Customer Support,Customer Success Manager,5.0
+29,1 / 1 / Engineering / Engineering,QA Engineer,7.0
+30,1 / 1 / Customer Support / Customer Support,Support Specialist,5.0
+31,1 / 1 / Product / Product,Product Designer,87.0
+32,1 / 1 / Engineering / Engineering,Senior Software Engineer,7.0
+33,1 / 1 / Finance / Finance,Payroll Specialist,40.0
+34,1 / 1 / Engineering / Engineering,DevOps Engineer,7.0
+35,1 / 1 / Customer Support / Customer Support,Support Team Lead,5.0
+36,1 / 1 / Sales / Sales,VP of Sales,Unknown
+37,1 / 1 / Engineering / Engineering,Senior Software Engineer,7.0
+38,1 / 1 / Marketing / Marketing,Marketing Specialist,21.0
+39,1 / 1 / Human Resources / Human Resources,HR Generalist,4.0
+40,1 / 1 / Finance / Finance,Finance Manager,Unknown
+41,1 / 1 / Product / Product,Product Owner,87.0
+42,1 / 1 / Engineering / Engineering,QA Engineer,7.0
+43,1 / 1 / Finance / Finance,Controller,40.0
+44,1 / 1 / Marketing / Marketing,Content Strategist,21.0
+45,1 / 1 / Engineering / Engineering,Engineering Manager,7.0
+46,1 / 1 / Engineering / Engineering,DevOps Engineer,7.0
+47,1 / 1 / Marketing / Marketing,Content Strategist,21.0
+48,1 / 1 / Customer Support / Customer Support,Support Agent,5.0
+49,1 / 1 / Customer Support / Customer Support,Support Team Lead,5.0
+50,1 / 1 / Customer Support / Customer Support,Support Agent,5.0
+51,1 / 1 / Engineering / Engineering,Staff Engineer,7.0
+52,1 / 1 / Finance / Finance,Accountant,40.0
+53,1 / 1 / Engineering / Engineering,DevOps Engineer,7.0
+54,1 / 1 / Engineering / Engineering,Engineering Manager,7.0
+55,1 / 1 / Engineering / Engineering,Staff Engineer,7.0
+56,1 / 1 / Engineering / Engineering,QA Engineer,7.0
+57,1 / 1 / Engineering / Engineering,Engineering Manager,7.0
+58,1 / 1 / Marketing / Marketing,SEO Analyst,21.0
+59,1 / 1 / Engineering / Engineering,DevOps Engineer,7.0
+60,1 / 1 / Engineering / Engineering,DevOps Engineer,7.0
+61,1 / 1 / Customer Support / Customer Support,Support Agent,5.0
+62,1 / 1 / Customer Support / Customer Support,Support Agent,5.0
+63,1 / 1 / Sales / Sales,Sales Manager,36.0
+64,1 / 1 / Finance / Finance,Finance Manager,40.0
+65,1 / 1 / Engineering / Engineering,QA Engineer,7.0
+66,1 / 1 / Sales / Sales,VP of Sales,36.0
+67,1 / 1 / Operations / Operations,Office Manager,11.0
+68,1 / 1 / Product / Product,Product Designer,87.0
+69,1 / 1 / Human Resources / Human Resources,HR Generalist,4.0
+70,1 / 1 / Engineering / Engineering,Engineering Manager,7.0
+71,1 / 1 / Engineering / Engineering,Software Engineer,7.0
+72,1 / 1 / Product / Product,UX Researcher,87.0
+73,1 / 1 / Operations / Operations,Office Manager,11.0
+74,1 / 1 / Human Resources / Human Resources,Recruiter,4.0
+75,1 / 1 / Finance / Finance,Finance Manager,40.0
+76,1 / 1 / Marketing / Marketing,Content Strategist,21.0
+77,1 / 1 / Engineering / Engineering,QA Engineer,7.0
+78,1 / 1 / Engineering / Engineering,Senior Software Engineer,7.0
+79,1 / 1 / Engineering / Engineering,QA Engineer,7.0
+80,1 / 1 / Sales / Sales,Sales Development Rep,36.0
+81,1 / 1 / Finance / Finance,Accountant,40.0
+82,1 / 1 / Sales / Sales,Sales Development Rep,36.0
+83,1 / 1 / Human Resources / Human Resources,People Operations Specialist,4.0
+84,1 / 1 / Customer Support / Customer Support,Support Specialist,5.0
+85,1 / 1 / Sales / Sales,Account Executive,36.0
+86,1 / 1 / Customer Support / Customer Support,Support Specialist,5.0
+87,1 / 1 / Product / Product,Product Manager,Unknown
+88,1 / 1 / Sales / Sales,VP of Sales,36.0
+89,1 / 1 / Engineering / Engineering,Staff Engineer,7.0
+90,1 / 1 / Engineering / Engineering,Senior Software Engineer,7.0
+91,1 / 1 / Engineering / Engineering,Engineering Manager,7.0
+92,1 / 1 / Product / Product,Product Designer,87.0
+93,1 / 1 / Engineering / Engineering,Software Engineer,7.0
+94,1 / 1 / Engineering / Engineering,Software Engineer,7.0
+95,1 / 1 / Engineering / Engineering,DevOps Engineer,7.0
+96,1 / 1 / Sales / Sales,Account Executive,36.0
+97,1 / 1 / Engineering / Engineering,Senior Software Engineer,7.0
+98,1 / 1 / Marketing / Marketing,Marketing Specialist,21.0
+99,1 / 1 / Engineering / Engineering,DevOps Engineer,7.0
+100,1 / 1 / Finance / Finance,Payroll Specialist,40.0

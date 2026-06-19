@@ -34,3 +34,15 @@ def acknowledge_alert(request: Request, alert_id: int = Path(..., description="I
         raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to acknowledge alert: {e}")
+
+@router.put("/acknowledge-all")
+def acknowledge_all_alerts(request: Request):
+    """
+    Mark all alerts as acknowledged.
+    """
+    try:
+        data_service = request.app.state.data_service
+        count = data_service.acknowledge_all_alerts()
+        return {"status": "acknowledged", "count": count, "success": True}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to acknowledge all alerts: {e}")

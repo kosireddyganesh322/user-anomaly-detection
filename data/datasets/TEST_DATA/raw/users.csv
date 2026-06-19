@@ -1,0 +1,101 @@
+user_id,employee_name,department,role,email,start_date,team
+1,Elena Bradley,Sales,Account Executive,1@company.com,2010-01-01 00:00:00,Sales
+2,Hugo Wallace,Engineering,Software Engineer,2@company.com,2010-01-01 00:00:00,Engineering
+3,Madeline Ramirez,Sales,Sales Development Rep,3@company.com,2010-01-01 00:00:00,Sales
+4,Mateo Taylor,Human Resources,HR Generalist,4@company.com,2010-01-01 00:00:00,Human Resources
+5,Kristin Harris,Customer Support,Support Team Lead,5@company.com,2010-01-01 00:00:00,Customer Support
+6,Keith Hart,Engineering,Senior Software Engineer,6@company.com,2010-01-01 00:00:00,Engineering
+7,Tammy Morgan,Engineering,Engineering Manager,7@company.com,2010-01-01 00:00:00,Engineering
+8,Kathleen Cox,Marketing,Marketing Specialist,8@company.com,2010-01-01 00:00:00,Marketing
+9,Peter Brown,Engineering,DevOps Engineer,9@company.com,2010-01-01 00:00:00,Engineering
+10,Anita Lewis,Finance,Controller,10@company.com,2010-01-01 00:00:00,Finance
+11,Jason Delgado,Operations,Office Manager,11@company.com,2010-01-01 00:00:00,Operations
+12,Gary Jordan,Product,Product Designer,12@company.com,2010-01-01 00:00:00,Product
+13,Joshua Carpenter,Sales,Sales Representative,13@company.com,2010-01-01 00:00:00,Sales
+14,Holly Hill,Customer Support,Support Team Lead,14@company.com,2010-01-01 00:00:00,Customer Support
+15,Zoe Price,Human Resources,HR Generalist,15@company.com,2010-01-01 00:00:00,Human Resources
+16,Ian Patterson,Engineering,Software Engineer,16@company.com,2010-01-01 00:00:00,Engineering
+17,Miles Martin,Engineering,QA Engineer,17@company.com,2010-01-01 00:00:00,Engineering
+18,Stella Wright,Operations,Logistics Coordinator,18@company.com,2010-01-01 00:00:00,Operations
+19,Sara Fernandez,Engineering,Engineering Manager,19@company.com,2010-01-01 00:00:00,Engineering
+20,Tyler Harper,Finance,Payroll Specialist,20@company.com,2010-01-01 00:00:00,Finance
+21,Kimberly Dunn,Marketing,Brand Manager,21@company.com,2010-01-01 00:00:00,Marketing
+22,William Arnold,Human Resources,Recruiter,22@company.com,2010-01-01 00:00:00,Human Resources
+23,Evelyn Butler,Engineering,Senior Software Engineer,23@company.com,2010-01-01 00:00:00,Engineering
+24,Andrea Valdez,Marketing,SEO Analyst,24@company.com,2010-01-01 00:00:00,Marketing
+25,Adrian Chen,Sales,Account Executive,25@company.com,2010-01-01 00:00:00,Sales
+26,Ella Lynch,Customer Support,Support Specialist,26@company.com,2010-01-01 00:00:00,Customer Support
+27,Pamela Hughes,Operations,Logistics Coordinator,27@company.com,2010-01-01 00:00:00,Operations
+28,Daniel Jones,Customer Support,Customer Success Manager,28@company.com,2010-01-01 00:00:00,Customer Support
+29,Spencer Harrison,Engineering,QA Engineer,29@company.com,2010-01-01 00:00:00,Engineering
+30,Brayden Diaz,Customer Support,Support Specialist,30@company.com,2010-01-01 00:00:00,Customer Support
+31,Donald Berry,Product,Product Designer,31@company.com,2010-01-01 00:00:00,Product
+32,Oliver Patel,Engineering,Senior Software Engineer,32@company.com,2010-01-01 00:00:00,Engineering
+33,Kelly Ortiz,Finance,Payroll Specialist,33@company.com,2010-01-01 00:00:00,Finance
+34,Rose Long,Engineering,DevOps Engineer,34@company.com,2010-01-01 00:00:00,Engineering
+35,Jasper Herrera,Customer Support,Support Team Lead,35@company.com,2010-01-01 00:00:00,Customer Support
+36,Dominic Barnes,Sales,VP of Sales,36@company.com,2010-01-01 00:00:00,Sales
+37,Ryker Shaw,Engineering,Senior Software Engineer,37@company.com,2010-01-01 00:00:00,Engineering
+38,Max Carter,Marketing,Marketing Specialist,38@company.com,2010-01-01 00:00:00,Marketing
+39,Emilia Wells,Human Resources,HR Generalist,39@company.com,2010-01-01 00:00:00,Human Resources
+40,Evan Wagner,Finance,Finance Manager,40@company.com,2010-01-01 00:00:00,Finance
+41,Carolyn Wong,Product,Product Owner,41@company.com,2010-01-01 00:00:00,Product
+42,Madelyn French,Engineering,QA Engineer,42@company.com,2010-01-01 00:00:00,Engineering
+43,Lois Lawrence,Finance,Controller,43@company.com,2010-01-01 00:00:00,Finance
+44,Becky Montgomery,Marketing,Content Strategist,44@company.com,2010-01-01 00:00:00,Marketing
+45,Calvin Hansen,Engineering,Engineering Manager,45@company.com,2010-01-01 00:00:00,Engineering
+46,Mariah Kim,Engineering,DevOps Engineer,46@company.com,2010-01-01 00:00:00,Engineering
+47,Bentley Morales,Marketing,Content Strategist,47@company.com,2010-01-01 00:00:00,Marketing
+48,James Walker,Customer Support,Support Agent,48@company.com,2010-01-01 00:00:00,Customer Support
+49,Hannah Flores,Customer Support,Support Team Lead,49@company.com,2010-01-01 00:00:00,Customer Support
+50,Mark Matthews,Customer Support,Support Agent,50@company.com,2010-01-01 00:00:00,Customer Support
+51,Nina Coleman,Engineering,Staff Engineer,51@company.com,2010-01-01 00:00:00,Engineering
+52,Karen Hale,Finance,Accountant,52@company.com,2010-01-01 00:00:00,Finance
+53,Eva Stone,Engineering,DevOps Engineer,53@company.com,2010-01-01 00:00:00,Engineering
+54,Catherine Gomez,Engineering,Engineering Manager,54@company.com,2010-01-01 00:00:00,Engineering
+55,Stacy Newman,Engineering,Staff Engineer,55@company.com,2010-01-01 00:00:00,Engineering
+56,Harper Stewart,Engineering,QA Engineer,56@company.com,2010-01-01 00:00:00,Engineering
+57,Declan Young,Engineering,Engineering Manager,57@company.com,2010-01-01 00:00:00,Engineering
+58,Frank Hamilton,Marketing,SEO Analyst,58@company.com,2010-01-01 00:00:00,Marketing
+59,Kaden Torres,Engineering,DevOps Engineer,59@company.com,2010-01-01 00:00:00,Engineering
+60,Sean Edwards,Engineering,DevOps Engineer,60@company.com,2010-01-01 00:00:00,Engineering
+61,Penelope Wood,Customer Support,Support Agent,61@company.com,2010-01-01 00:00:00,Customer Support
+62,Veronica Gonzales,Customer Support,Support Agent,62@company.com,2010-01-01 00:00:00,Customer Support
+63,Danielle Duncan,Sales,Sales Manager,63@company.com,2010-01-01 00:00:00,Sales
+64,Anthony Cunningham,Finance,Finance Manager,64@company.com,2010-01-01 00:00:00,Finance
+65,Emmett Cooper,Engineering,QA Engineer,65@company.com,2010-01-01 00:00:00,Engineering
+66,Juan Sanders,Sales,VP of Sales,66@company.com,2010-01-01 00:00:00,Sales
+67,Brandy King,Operations,Office Manager,67@company.com,2010-01-01 00:00:00,Operations
+68,Abigail Warren,Product,Product Designer,68@company.com,2010-01-01 00:00:00,Product
+69,Sarah Vasquez,Human Resources,HR Generalist,69@company.com,2010-01-01 00:00:00,Human Resources
+70,Beverly Jimenez,Engineering,Engineering Manager,70@company.com,2010-01-01 00:00:00,Engineering
+71,David Figueroa,Engineering,Software Engineer,71@company.com,2010-01-01 00:00:00,Engineering
+72,Leah Anderson,Product,UX Researcher,72@company.com,2010-01-01 00:00:00,Product
+73,Brooklyn Carr,Operations,Office Manager,73@company.com,2010-01-01 00:00:00,Operations
+74,Isabella Porter,Human Resources,Recruiter,74@company.com,2010-01-01 00:00:00,Human Resources
+75,Angela Jensen,Finance,Finance Manager,75@company.com,2010-01-01 00:00:00,Finance
+76,Faith Bell,Marketing,Content Strategist,76@company.com,2010-01-01 00:00:00,Marketing
+77,Brody Moore,Engineering,QA Engineer,77@company.com,2010-01-01 00:00:00,Engineering
+78,Henry Burke,Engineering,Senior Software Engineer,78@company.com,2010-01-01 00:00:00,Engineering
+79,Melissa Goodwin,Engineering,QA Engineer,79@company.com,2010-01-01 00:00:00,Engineering
+80,Ann Williams,Sales,Sales Development Rep,80@company.com,2010-01-01 00:00:00,Sales
+81,Terry Robertson,Finance,Accountant,81@company.com,2010-01-01 00:00:00,Finance
+82,Courtney Hanson,Sales,Sales Development Rep,82@company.com,2010-01-01 00:00:00,Sales
+83,Hunter Sullivan,Human Resources,People Operations Specialist,83@company.com,2010-01-01 00:00:00,Human Resources
+84,Willie Richards,Customer Support,Support Specialist,84@company.com,2010-01-01 00:00:00,Customer Support
+85,Jamie Johnson,Sales,Account Executive,85@company.com,2010-01-01 00:00:00,Sales
+86,Margaret Parker,Customer Support,Support Specialist,86@company.com,2010-01-01 00:00:00,Customer Support
+87,Betty Salazar,Product,Product Manager,87@company.com,2010-01-01 00:00:00,Product
+88,Connie Rodriguez,Sales,VP of Sales,88@company.com,2010-01-01 00:00:00,Sales
+89,Liam Castillo,Engineering,Staff Engineer,89@company.com,2010-01-01 00:00:00,Engineering
+90,Lawrence Allen,Engineering,Senior Software Engineer,90@company.com,2010-01-01 00:00:00,Engineering
+91,Peyton Lee,Engineering,Engineering Manager,91@company.com,2010-01-01 00:00:00,Engineering
+92,Ellen Johnston,Product,Product Designer,92@company.com,2010-01-01 00:00:00,Product
+93,Jesse Aguilar,Engineering,Software Engineer,93@company.com,2010-01-01 00:00:00,Engineering
+94,Owen Hernandez,Engineering,Software Engineer,94@company.com,2010-01-01 00:00:00,Engineering
+95,Vanessa Sandoval,Engineering,DevOps Engineer,95@company.com,2010-01-01 00:00:00,Engineering
+96,Lincoln Simmons,Sales,Account Executive,96@company.com,2010-01-01 00:00:00,Sales
+97,Kaiden Ray,Engineering,Senior Software Engineer,97@company.com,2010-01-01 00:00:00,Engineering
+98,Debra Castro,Marketing,Marketing Specialist,98@company.com,2010-01-01 00:00:00,Marketing
+99,Emery Perez,Engineering,DevOps Engineer,99@company.com,2010-01-01 00:00:00,Engineering
+100,Jeremy Reed,Finance,Payroll Specialist,100@company.com,2010-01-01 00:00:00,Finance

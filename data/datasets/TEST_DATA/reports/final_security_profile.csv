@@ -1,0 +1,101 @@
+user_id,department,role,risk_score,risk_level,anomaly_score,anomaly_label,security_status,anomaly_reason
+1,Sales,Account Executive,11.25,Low,0.200511475594302,Normal,Normal,No Significant Anomalies Detected
+2,Engineering,Software Engineer,14.25,Low,0.1717254711346906,Normal,Normal,No Significant Anomalies Detected
+3,Sales,Sales Development Rep,15.3,Low,-0.0486024413115678,Suspicious,Normal,Repeated Failed Authentication Patterns
+4,Human Resources,HR Generalist,18.4,Low,0.182226639828322,Normal,Normal,No Significant Anomalies Detected
+5,Customer Support,Support Team Lead,14.0,Low,0.2002565942305473,Normal,Normal,No Significant Anomalies Detected
+6,Engineering,Senior Software Engineer,11.75,Low,0.1331743562198378,Normal,Normal,No Significant Anomalies Detected
+7,Engineering,Engineering Manager,5.15,Low,0.1590939503565809,Normal,Normal,No Significant Anomalies Detected
+8,Marketing,Marketing Specialist,17.15,Low,-0.1166870585745655,Suspicious,Normal,Multiple Behavioral Indicators Detected: Elevated Off-Hours Logon Schedules + Excessive Weekend Activity + Repeated Failed Authentication Patterns
+9,Engineering,DevOps Engineer,10.1,Low,0.1949584897469141,Normal,Normal,No Significant Anomalies Detected
+10,Finance,Controller,26.1,Medium,0.1557980532861156,Normal,Normal,Multiple Behavioral Indicators Detected: Excessive Weekend Activity + Repeated Failed Authentication Patterns
+11,Operations,Office Manager,10.75,Low,0.1733239851059846,Normal,Normal,No Significant Anomalies Detected
+12,Product,Product Designer,13.05,Low,0.1354251724746881,Normal,Normal,No Significant Anomalies Detected
+13,Sales,Sales Representative,14.0,Low,0.1021330492398038,Normal,Normal,No Significant Anomalies Detected
+14,Customer Support,Support Team Lead,20.0,Low,0.1705587736294349,Normal,Normal,No Significant Anomalies Detected
+15,Human Resources,HR Generalist,21.1,Low,0.1790074281760914,Normal,Normal,No Significant Anomalies Detected
+16,Engineering,Software Engineer,13.5,Low,0.1712475151757537,Normal,Normal,No Significant Anomalies Detected
+17,Engineering,QA Engineer,11.95,Low,0.1692532081425312,Normal,Normal,No Significant Anomalies Detected
+18,Operations,Logistics Coordinator,18.0,Low,0.1450875755872629,Normal,Normal,No Significant Anomalies Detected
+19,Engineering,Engineering Manager,8.05,Low,0.1332095210132523,Normal,Normal,No Significant Anomalies Detected
+20,Finance,Payroll Specialist,15.45,Low,0.1108436959046473,Normal,Normal,No Significant Anomalies Detected
+21,Marketing,Brand Manager,15.7,Low,0.1283002499876362,Normal,Normal,No Significant Anomalies Detected
+22,Human Resources,Recruiter,16.75,Low,0.1282818758153626,Normal,Normal,No Significant Anomalies Detected
+23,Engineering,Senior Software Engineer,27.7,Medium,0.0734269307918963,Normal,Normal,Multiple Behavioral Indicators Detected: Elevated Off-Hours Logon Schedules + Rare / Unauthorized Endpoint Usage
+24,Marketing,SEO Analyst,18.35,Low,0.1612230938274413,Normal,Normal,No Significant Anomalies Detected
+25,Sales,Account Executive,10.05,Low,0.0678043472536662,Normal,Normal,No Significant Anomalies Detected
+26,Customer Support,Support Specialist,15.35,Low,0.1840055114134337,Normal,Normal,No Significant Anomalies Detected
+27,Operations,Logistics Coordinator,12.5,Low,0.2072343130130832,Normal,Normal,No Significant Anomalies Detected
+28,Customer Support,Customer Success Manager,19.9,Low,0.1904221802786072,Normal,Normal,No Significant Anomalies Detected
+29,Engineering,QA Engineer,4.6,Low,0.1473507932256172,Normal,Normal,No Significant Anomalies Detected
+30,Customer Support,Support Specialist,23.15,Low,0.059064405120833,Normal,Normal,No Significant Anomalies Detected
+31,Product,Product Designer,25.4,Medium,0.0933734334239952,Normal,Normal,Multiple Behavioral Indicators Detected: Elevated Off-Hours Logon Schedules + Excessive Weekend Activity
+32,Engineering,Senior Software Engineer,9.55,Low,0.1419483041915098,Normal,Normal,No Significant Anomalies Detected
+33,Finance,Payroll Specialist,12.65,Low,0.1619639383677185,Normal,Normal,No Significant Anomalies Detected
+34,Engineering,DevOps Engineer,15.75,Low,0.12379908360441,Normal,Normal,No Significant Anomalies Detected
+35,Customer Support,Support Team Lead,18.5,Low,0.1698708695802575,Normal,Normal,No Significant Anomalies Detected
+36,Sales,VP of Sales,26.75,Medium,0.1380750434076114,Normal,Normal,Excessive Weekend Activity
+37,Engineering,Senior Software Engineer,28.55,Medium,0.1018389588581799,Normal,Normal,Multiple Behavioral Indicators Detected: Elevated Off-Hours Logon Schedules + Rare / Unauthorized Endpoint Usage + Excessive Weekend Activity + Repeated Failed Authentication Patterns
+38,Marketing,Marketing Specialist,12.45,Low,0.1741971232192133,Normal,Normal,No Significant Anomalies Detected
+39,Human Resources,HR Generalist,17.35,Low,0.1391663139709344,Normal,Normal,No Significant Anomalies Detected
+40,Finance,Finance Manager,3.8,Low,0.1457851631284502,Normal,Normal,No Significant Anomalies Detected
+41,Product,Product Owner,11.2,Low,0.0730504137012675,Normal,Normal,No Significant Anomalies Detected
+42,Engineering,QA Engineer,8.55,Low,-0.0288828961103985,Suspicious,Normal,Multiple Behavioral Indicators Detected: Elevated Off-Hours Logon Schedules + Excessive Weekend Activity
+43,Finance,Controller,6.75,Low,0.1381847393631587,Normal,Normal,No Significant Anomalies Detected
+44,Marketing,Content Strategist,30.9,Medium,0.1407277896206475,Normal,Normal,Multiple Behavioral Indicators Detected: Elevated Off-Hours Logon Schedules + Excessive Weekend Activity
+45,Engineering,Engineering Manager,21.9,Low,0.1480296915332768,Normal,Normal,No Significant Anomalies Detected
+46,Engineering,DevOps Engineer,34.1,Medium,0.001520152426863,Normal,Normal,Multiple Behavioral Indicators Detected: Elevated Off-Hours Logon Schedules + Rare / Unauthorized Endpoint Usage + Excessive Weekend Activity + Repeated Failed Authentication Patterns
+47,Marketing,Content Strategist,24.55,Low,0.1720096885830591,Normal,Normal,No Significant Anomalies Detected
+48,Customer Support,Support Agent,16.35,Low,0.137038809536664,Normal,Normal,No Significant Anomalies Detected
+49,Customer Support,Support Team Lead,17.6,Low,0.1610087625984786,Normal,Normal,No Significant Anomalies Detected
+50,Customer Support,Support Agent,30.45,Medium,0.0024783706725184,Normal,Normal,Multiple Behavioral Indicators Detected: Rare / Unauthorized Endpoint Usage + Excessive Weekend Activity
+51,Engineering,Staff Engineer,22.2,Low,0.1390191568878411,Normal,Normal,No Significant Anomalies Detected
+52,Finance,Accountant,5.95,Low,0.1751665905626733,Normal,Normal,No Significant Anomalies Detected
+53,Engineering,DevOps Engineer,21.75,Low,0.1481542273558444,Normal,Normal,No Significant Anomalies Detected
+54,Engineering,Engineering Manager,16.05,Low,0.190275361737107,Normal,Normal,No Significant Anomalies Detected
+55,Engineering,Staff Engineer,31.3,Medium,0.1270068262517262,Normal,Normal,Multiple Behavioral Indicators Detected: Elevated Off-Hours Logon Schedules + Excessive Weekend Activity + Repeated Failed Authentication Patterns
+56,Engineering,QA Engineer,5.35,Low,0.1843602953813308,Normal,Normal,No Significant Anomalies Detected
+57,Engineering,Engineering Manager,21.2,Low,0.0238187183854816,Normal,Normal,No Significant Anomalies Detected
+58,Marketing,SEO Analyst,14.65,Low,0.1911590339028716,Normal,Normal,No Significant Anomalies Detected
+59,Engineering,DevOps Engineer,19.65,Low,0.1692709054315643,Normal,Normal,No Significant Anomalies Detected
+60,Engineering,DevOps Engineer,15.6,Low,0.1647274379226954,Normal,Normal,No Significant Anomalies Detected
+61,Customer Support,Support Agent,11.55,Low,0.1323950397829945,Normal,Normal,No Significant Anomalies Detected
+62,Customer Support,Support Agent,19.95,Low,0.1593123847504772,Normal,Normal,No Significant Anomalies Detected
+63,Sales,Sales Manager,12.6,Low,0.2033890257447393,Normal,Normal,No Significant Anomalies Detected
+64,Finance,Finance Manager,15.5,Low,0.179611626683477,Normal,Normal,No Significant Anomalies Detected
+65,Engineering,QA Engineer,0.8,Low,0.132777012499292,Normal,Normal,No Significant Anomalies Detected
+66,Sales,VP of Sales,12.8,Low,0.2009946585637371,Normal,Normal,No Significant Anomalies Detected
+67,Operations,Office Manager,10.0,Low,0.1628360833661725,Normal,Normal,No Significant Anomalies Detected
+68,Product,Product Designer,31.0,Medium,0.1195221439338029,Normal,Normal,Multiple Behavioral Indicators Detected: Elevated Off-Hours Logon Schedules + Excessive Weekend Activity
+69,Human Resources,HR Generalist,4.2,Low,0.10780926276292,Normal,Normal,No Significant Anomalies Detected
+70,Engineering,Engineering Manager,24.35,Low,0.0800212343726782,Normal,Normal,No Significant Anomalies Detected
+71,Engineering,Software Engineer,17.55,Low,0.0467412731483596,Normal,Normal,No Significant Anomalies Detected
+72,Product,UX Researcher,18.15,Low,0.1830412405480859,Normal,Normal,No Significant Anomalies Detected
+73,Operations,Office Manager,27.4,Medium,0.1594804792614619,Normal,Normal,Multiple Behavioral Indicators Detected: Elevated Off-Hours Logon Schedules + Excessive Weekend Activity + Repeated Failed Authentication Patterns
+74,Human Resources,Recruiter,11.5,Low,0.2015893853167054,Normal,Normal,No Significant Anomalies Detected
+75,Finance,Finance Manager,24.2,Low,0.1392349714906517,Normal,Normal,No Significant Anomalies Detected
+76,Marketing,Content Strategist,2.85,Low,0.1740434116161875,Normal,Normal,No Significant Anomalies Detected
+77,Engineering,QA Engineer,11.65,Low,0.2099937087244208,Normal,Normal,No Significant Anomalies Detected
+78,Engineering,Senior Software Engineer,17.9,Low,0.0938007100262008,Normal,Normal,No Significant Anomalies Detected
+79,Engineering,QA Engineer,21.65,Low,0.1929738405985465,Normal,Normal,No Significant Anomalies Detected
+80,Sales,Sales Development Rep,32.05,Medium,0.1076216820918665,Normal,Normal,Multiple Behavioral Indicators Detected: Elevated Off-Hours Logon Schedules + Excessive Weekend Activity
+81,Finance,Accountant,20.4,Low,0.1541756827401936,Normal,Normal,No Significant Anomalies Detected
+82,Sales,Sales Development Rep,16.3,Low,-0.0311869556253812,Suspicious,Normal,Multiple Behavioral Indicators Detected: Elevated Off-Hours Logon Schedules + Excessive Weekend Activity + Repeated Failed Authentication Patterns
+83,Human Resources,People Operations Specialist,16.3,Low,0.1656227926917859,Normal,Normal,No Significant Anomalies Detected
+84,Customer Support,Support Specialist,29.75,Medium,0.1061195052313465,Normal,Normal,Multiple Behavioral Indicators Detected: Elevated Off-Hours Logon Schedules + Excessive Weekend Activity + Repeated Failed Authentication Patterns
+85,Sales,Account Executive,11.6,Low,0.1840951886491322,Normal,Normal,No Significant Anomalies Detected
+86,Customer Support,Support Specialist,16.5,Low,0.0850994318752188,Normal,Normal,No Significant Anomalies Detected
+87,Product,Product Manager,15.15,Low,0.1227116183266796,Normal,Normal,No Significant Anomalies Detected
+88,Sales,VP of Sales,14.0,Low,0.1764162546950089,Normal,Normal,No Significant Anomalies Detected
+89,Engineering,Staff Engineer,11.6,Low,0.184498048220417,Normal,Normal,No Significant Anomalies Detected
+90,Engineering,Senior Software Engineer,20.85,Low,0.1250603055450103,Normal,Normal,No Significant Anomalies Detected
+91,Engineering,Engineering Manager,3.1,Low,0.139014882751452,Normal,Normal,No Significant Anomalies Detected
+92,Product,Product Designer,3.75,Low,0.1405367958205985,Normal,Normal,No Significant Anomalies Detected
+93,Engineering,Software Engineer,13.2,Low,0.1916494733482303,Normal,Normal,No Significant Anomalies Detected
+94,Engineering,Software Engineer,6.75,Low,0.1656814487133363,Normal,Normal,No Significant Anomalies Detected
+95,Engineering,DevOps Engineer,23.7,Low,0.0846130065481149,Normal,Normal,No Significant Anomalies Detected
+96,Sales,Account Executive,20.05,Low,0.1537945262027455,Normal,Normal,No Significant Anomalies Detected
+97,Engineering,Senior Software Engineer,1.95,Low,0.1682676704811613,Normal,Normal,No Significant Anomalies Detected
+98,Marketing,Marketing Specialist,15.25,Low,0.1136442574066832,Normal,Normal,No Significant Anomalies Detected
+99,Engineering,DevOps Engineer,16.45,Low,-0.0436698439594009,Suspicious,Normal,Elevated Off-Hours Logon Schedules
+100,Finance,Payroll Specialist,4.25,Low,0.1611109365448789,Normal,Normal,No Significant Anomalies Detected

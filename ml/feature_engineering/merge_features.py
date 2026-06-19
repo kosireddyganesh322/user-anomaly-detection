@@ -19,15 +19,16 @@ import numpy as np
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-def merge_features(output_path: str) -> None:
+def merge_features(
+    output_path: str,
+    users_clean_path: str = "data/cleaned/users_clean.csv",
+    ldap_clean_path: str = "data/cleaned/ldap_clean.csv",
+    login_features_path: str = "data/features/login_features.csv",
+    device_features_path: str = "data/features/device_features.csv",
+    raw_users_path: str = "data/raw/users.csv"
+) -> None:
     logger.info("Starting master feature merging pipeline")
     try:
-        # Define input paths
-        users_clean_path = "data/cleaned/users_clean.csv"
-        ldap_clean_path = "data/cleaned/ldap_clean.csv"
-        login_features_path = "data/features/login_features.csv"
-        device_features_path = "data/features/device_features.csv"
-        raw_users_path = "data/raw/users.csv"
 
         # Check required files
         for path in [users_clean_path, login_features_path, device_features_path]:
@@ -45,6 +46,8 @@ def merge_features(output_path: str) -> None:
         if os.path.exists(raw_users_path):
             raw_df = pd.read_csv(raw_users_path)
             raw_df['user_id'] = raw_df['user_id'].astype(str).str.strip().str.upper()
+            if 'team' not in raw_df.columns:
+                raw_df['team'] = "Unknown"
             team_mapping = raw_df[['user_id', 'team']].drop_duplicates(subset=['user_id'])
             # Merge team mapping to users registry
             users_df = users_df.merge(team_mapping, on='user_id', how='left')

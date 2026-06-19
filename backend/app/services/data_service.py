@@ -19,21 +19,41 @@ class DataService:
         self.login_trends_data: List[Dict[str, Any]] = []
         self.device_trends_data: List[Dict[str, Any]] = []
         self.alerts_list: List[Dict[str, Any]] = []
+        self.current_dataset = "CERT"
+        self.load_data()
+
+    def switch_dataset(self, dataset_name: str) -> None:
+        logger.info(f"Switching active dataset to: {dataset_name}")
+        self.current_dataset = dataset_name
         self.load_data()
 
     def load_data(self) -> None:
-        logger.info("Initializing Data Service data layers...")
+        logger.info(f"Initializing Data Service data layers for dataset: {self.current_dataset}...")
         try:
+            # Determine base path for the current dataset
+            if self.current_dataset == "CERT":
+                # Check if CERT is stored under datasets/CERT
+                cert_path = "data/datasets/CERT"
+                if os.path.exists(os.path.join(cert_path, "reports/final_security_profile.csv")):
+                    base_dataset_dir = cert_path
+                elif os.path.exists(os.path.join("..", cert_path, "reports/final_security_profile.csv")):
+                    base_dataset_dir = os.path.join("..", cert_path)
+                else:
+                    # Fallback to legacy root paths for backward compatibility
+                    base_dataset_dir = "data"
+            else:
+                base_dataset_dir = f"data/datasets/{self.current_dataset}"
+
             # Paths to master reports
-            profile_path = "../data/reports/final_security_profile.csv"
-            features_path = "../data/features/user_features.csv"
+            profile_path = os.path.join(base_dataset_dir, "reports/final_security_profile.csv")
+            features_path = os.path.join(base_dataset_dir, "features/user_features.csv")
             
             # Since the backend directory runs from user-anomaly-detection/backend/,
             # relative paths to data are standard relative to the backend workspace root.
             # Let's adjust paths if they don't exist
-            if not os.path.exists(profile_path):
-                profile_path = "data/reports/final_security_profile.csv"
-                features_path = "data/features/user_features.csv"
+            if not os.path.exists(profile_path) and os.path.exists(os.path.join("..", profile_path)):
+                profile_path = os.path.join("..", profile_path)
+                features_path = os.path.join("..", features_path)
                 
             if os.path.exists(profile_path) and os.path.exists(features_path):
                 logger.info(f"Loading user profile metadata from {profile_path}")
@@ -50,18 +70,25 @@ class DataService:
                 features_subset = features_df.drop(columns=dup_cols)
                 
                 self.users_df = features_subset.merge(profile_df, on='user_id', how='right')
+                
+                # Recalculate security status and anomaly reasons dynamically to ensure consistency
+                from ml.prediction.generate_security_profile import determine_anomaly_reason, determine_security_status
+                self.users_df['security_status'] = self.users_df.apply(determine_security_status, axis=1)
+                self.users_df['anomaly_reason'] = self.users_df.apply(determine_anomaly_reason, axis=1)
+                
                 logger.info(f"Loaded {len(self.users_df)} consolidated user security profiles")
             else:
-                logger.warning("Warning: profile or feature CSV files not found. Initializing empty user profiles list.")
+                logger.warning(f"Warning: profile or feature CSV files not found at {profile_path}. Initializing empty user profiles list.")
                 self.users_df = pd.DataFrame(columns=[
                     'user_id', 'name', 'email', 'role', 'department', 'team', 'manager',
-                    'risk_score', 'risk_level', 'anomaly_score', 'anomaly_label', 'security_status'
+                    'risk_score', 'risk_level', 'anomaly_score', 'anomaly_label', 'security_status',
+                    'anomaly_reason'
                 ])
 
             # Pre-compute login trends
-            logon_clean_path = "../data/cleaned/logon_clean.csv"
-            if not os.path.exists(logon_clean_path):
-                logon_clean_path = "data/cleaned/logon_clean.csv"
+            logon_clean_path = os.path.join(base_dataset_dir, "cleaned/logon_clean.csv")
+            if not os.path.exists(logon_clean_path) and os.path.exists(os.path.join("..", logon_clean_path)):
+                logon_clean_path = os.path.join("..", logon_clean_path)
 
             if os.path.exists(logon_clean_path):
                 logger.info(f"Pre-computing login trends from {logon_clean_path}...")
@@ -74,11 +101,12 @@ class DataService:
                 del logon_df # Free memory
             else:
                 logger.warning(f"Cleaned logon file {logon_clean_path} not found. Login trends are unavailable.")
+                self.login_trends_data = []
 
             # Pre-compute device trends
-            device_clean_path = "../data/cleaned/device_clean.csv"
-            if not os.path.exists(device_clean_path):
-                device_clean_path = "data/cleaned/device_clean.csv"
+            device_clean_path = os.path.join(base_dataset_dir, "cleaned/device_clean.csv")
+            if not os.path.exists(device_clean_path) and os.path.exists(os.path.join("..", device_clean_path)):
+                device_clean_path = os.path.join("..", device_clean_path)
 
             if os.path.exists(device_clean_path):
                 logger.info(f"Pre-computing device trends from {device_clean_path}...")
@@ -91,6 +119,7 @@ class DataService:
                 del device_df # Free memory
             else:
                 logger.warning(f"Cleaned device file {device_clean_path} not found. Device trends are unavailable.")
+                self.device_trends_data = []
 
             # Initialize the dedicated alert service engine
             self.alert_service = AlertService(self.users_df)
@@ -258,3 +287,173 @@ class DataService:
 
     def acknowledge_alert(self, alert_id: int) -> bool:
         return self.alert_service.acknowledge_alert(alert_id)
+
+    def acknowledge_all_alerts(self) -> int:
+        return self.alert_service.acknowledge_all_alerts()
+
+    def get_top_risk_users(self, limit: int = 10) -> List[Dict[str, Any]]:
+        if self.users_df.empty:
+            return []
+        sorted_df = self.users_df.sort_values(by='risk_score', ascending=False)
+        return sorted_df.head(limit).to_dict(orient='records')
+
+    def get_department_risk_ranking(self) -> List[Dict[str, Any]]:
+        if self.users_df.empty:
+            return []
+        
+        dept_group = self.users_df.groupby('department')
+        ranking = []
+        for dept_name, group in dept_group:
+            avg_risk = float(group['risk_score'].mean())
+            suspicious_count = int((group['anomaly_label'] == 'Suspicious').sum())
+            high_count = int((group['risk_level'] == 'High').sum())
+            critical_count = int((group['risk_level'] == 'Critical').sum())
+            ranking.append({
+                'department': dept_name,
+                'avg_risk_score': round(avg_risk, 2),
+                'suspicious_users': suspicious_count,
+                'high_risk_users': high_count,
+                'critical_users': critical_count
+            })
+        
+        ranking.sort(key=lambda x: x['avg_risk_score'], reverse=True)
+        return ranking
+
+    def get_anomaly_reason_breakdown(self) -> Dict[str, int]:
+        breakdown = {
+            "Elevated Off-Hours Logon Schedules": 0,
+            "Suspicious USB Connection Ratios": 0,
+            "Rare Endpoint Usage": 0,
+            "Weekend Activity Anomaly": 0,
+            "Multiple Behavioral Indicators": 0,
+            "No Significant Anomalies": 0
+        }
+        if self.users_df.empty:
+            return breakdown
+            
+        for reason in self.users_df['anomaly_reason'].fillna(''):
+            if "No Significant" in reason:
+                breakdown["No Significant Anomalies"] += 1
+            elif "Multiple" in reason:
+                breakdown["Multiple Behavioral Indicators"] += 1
+                if "Off-Hours" in reason:
+                    breakdown["Elevated Off-Hours Logon Schedules"] += 1
+                if "USB" in reason:
+                    breakdown["Suspicious USB Connection Ratios"] += 1
+                if "Endpoint" in reason or "PC" in reason:
+                    breakdown["Rare Endpoint Usage"] += 1
+                if "Weekend" in reason:
+                    breakdown["Weekend Activity Anomaly"] += 1
+            else:
+                if "Off-Hours" in reason:
+                    breakdown["Elevated Off-Hours Logon Schedules"] += 1
+                elif "USB" in reason:
+                    breakdown["Suspicious USB Connection Ratios"] += 1
+                elif "Endpoint" in reason or "PC" in reason:
+                    breakdown["Rare Endpoint Usage"] += 1
+                elif "Weekend" in reason:
+                    breakdown["Weekend Activity Anomaly"] += 1
+                else:
+                    breakdown["No Significant Anomalies"] += 1
+                    
+        return breakdown
+
+    def get_threat_heatmap(self) -> List[Dict[str, Any]]:
+        if self.users_df.empty:
+            return []
+            
+        departments = sorted(self.users_df['department'].dropna().unique())
+        heatmap_data = []
+        for dept in departments:
+            dept_df = self.users_df[self.users_df['department'] == dept]
+            heatmap_data.append({
+                "department": dept,
+                "Low": int((dept_df['risk_level'] == 'Low').sum()),
+                "Medium": int((dept_df['risk_level'] == 'Medium').sum()),
+                "High": int((dept_df['risk_level'] == 'High').sum()),
+                "Critical": int((dept_df['risk_level'] == 'Critical').sum())
+            })
+        return heatmap_data
+
+    def get_security_posture_score(self) -> Dict[str, Any]:
+        if self.users_df.empty:
+            return {"score": 100, "status": "Excellent"}
+            
+        total_users = len(self.users_df)
+        critical_count = int((self.users_df['risk_level'] == 'Critical').sum())
+        high_count = int((self.users_df['risk_level'] == 'High').sum())
+        suspicious_count = int((self.users_df['anomaly_label'] == 'Suspicious').sum())
+        avg_risk_score = float(self.users_df['risk_score'].mean())
+        
+        # Deductions based on threat prevalence (scaled proportionally)
+        deductions = ((critical_count * 40.0 + high_count * 20.0 + suspicious_count * 20.0) / total_users) + (avg_risk_score * 0.20)
+        score = max(0, min(100, round(100 - deductions)))
+        
+        if score >= 90:
+            status = "Excellent"
+        elif score >= 75:
+            status = "Good"
+        elif score >= 50:
+            status = "Moderate"
+        else:
+            status = "Poor"
+            
+        return {
+            "score": score,
+            "status": status,
+            "critical_users": critical_count,
+            "high_risk_users": high_count,
+            "suspicious_users": suspicious_count,
+            "avg_risk_score": round(avg_risk_score, 2)
+        }
+
+    def get_user_activity_risk_matrix(self) -> List[Dict[str, Any]]:
+        if self.users_df.empty:
+            return []
+            
+        # Filter all suspicious or high/critical users, and sample low/normal users to keep plot performance smooth
+        flagged_df = self.users_df[
+            (self.users_df['anomaly_label'] == 'Suspicious') |
+            (self.users_df['risk_level'].isin(['High', 'Critical']))
+        ]
+        
+        normal_df = self.users_df[
+            (self.users_df['anomaly_label'] == 'Normal') &
+            (~self.users_df['risk_level'].isin(['High', 'Critical']))
+        ]
+        
+        sample_size = min(len(normal_df), 1000 - len(flagged_df))
+        if sample_size > 0:
+            sampled_normal = normal_df.sample(n=sample_size, random_state=42)
+            matrix_df = pd.concat([flagged_df, sampled_normal])
+        else:
+            matrix_df = flagged_df
+            
+        cols = ['user_id', 'name', 'department', 'risk_score', 'risk_level', 'anomaly_score', 'anomaly_reason']
+        return matrix_df[cols].to_dict(orient='records')
+
+    def get_behavioral_indicators_summary(self) -> Dict[str, float]:
+        if self.users_df.empty:
+            return {
+                "avg_after_hours_ratio": 0.0,
+                "avg_weekend_ratio": 0.0,
+                "avg_usb_connections": 0.0,
+                "avg_unique_endpoints": 0.0,
+                "avg_risk_score": 0.0
+            }
+        
+        return {
+            "avg_after_hours_ratio": round(float(self.users_df['after_hours_ratio'].mean()), 4),
+            "avg_weekend_ratio": round(float(self.users_df['weekend_ratio'].mean()), 4),
+            "avg_usb_connections": round(float(self.users_df['usb_connects'].mean()), 2),
+            "avg_unique_endpoints": round(float(self.users_df['unique_pcs_used'].mean()), 2),
+            "avg_risk_score": round(float(self.users_df['risk_score'].mean()), 2)
+        }
+
+    def get_watchlist(self, limit: int = 20) -> List[Dict[str, Any]]:
+        if self.users_df.empty:
+            return []
+            
+        sorted_df = self.users_df.sort_values(by='risk_score', ascending=False)
+        cols = ['user_id', 'name', 'department', 'risk_score', 'security_status', 'anomaly_reason']
+        return sorted_df.head(limit)[cols].to_dict(orient='records')

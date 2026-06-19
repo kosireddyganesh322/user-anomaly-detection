@@ -1,0 +1,12 @@
+{
+    "name": "NFC_Test",
+    "upload_date": "2026-06-19 11:14:23",
+    "total_users": 3,
+    "total_records": 8,
+    "status": "Success",
+    "departments": 3,
+    "date_range": "2010-01-02 to 2010-01-03",
+    "records_processed": 8,
+    "missing_values_count": 2,
+    "data_quality_score": 97.62
+}

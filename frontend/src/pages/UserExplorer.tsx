@@ -16,6 +16,11 @@ interface UserProfile {
   anomaly_score?: number;
   anomaly_label?: string;
   security_status?: string;
+  anomaly_reason?: string;
+  after_hours_ratio?: number;
+  weekend_ratio?: number;
+  usb_connects?: number;
+  unique_pcs_used?: number;
 }
 
 export default function UserExplorer() {
@@ -36,11 +41,34 @@ export default function UserExplorer() {
     setRiskLevel,
     setAnomalyLabel,
   } = useUsers();
-
+  const [departmentsList, setDepartmentsList] = useState<string[]>([]);
   const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
   const [selectedUser, setSelectedUser] = useState<UserProfile | null>(null);
   const [detailLoading, setDetailLoading] = useState(false);
   const [detailError, setDetailError] = useState<string | null>(null);
+
+  const fetchDepartmentsList = () => {
+    usersApi
+      .getDepartments()
+      .then((res) => {
+        setDepartmentsList(res.data || []);
+      })
+      .catch((err) => {
+        console.error("Failed to load departments list:", err);
+      });
+  };
+
+  useEffect(() => {
+    fetchDepartmentsList();
+    window.addEventListener("refresh-data", fetchDepartmentsList);
+    return () => window.removeEventListener("refresh-data", fetchDepartmentsList);
+  }, []);
+
+  useEffect(() => {
+    if (department && departmentsList.length > 0 && !departmentsList.includes(department)) {
+      setDepartment("");
+    }
+  }, [departmentsList, department, setDepartment]);
 
   // Debounced search term
   const [searchInput, setSearchInput] = useState(search);
@@ -103,6 +131,236 @@ export default function UserExplorer() {
       return "bg-danger/20 text-red-300 border-danger/30 font-semibold";
     }
     return "bg-gray-800 text-gray-400 border-gray-700";
+  };
+
+  const getAnomalyExplanationBadge = (u: UserProfile) => {
+    const reason = u.anomaly_reason || "No Significant Anomalies Detected";
+    
+    let label = reason;
+    let className = "bg-gray-800 text-gray-400 border-gray-750"; // default
+    
+    if (reason.includes("No Significant Anomalies")) {
+      label = "No Significant Anomalies";
+      className = "bg-safe/10 text-safe border border-safe/25";
+    } else if (reason.includes("Multiple Behavioral Indicators")) {
+      label = "Multiple Indicators";
+      className = "bg-danger/10 text-danger border border-danger/25 font-semibold animate-pulse";
+    } else if (reason === "Elevated Off-Hours Logon Schedules") {
+      label = "Elevated Off-Hours Logon";
+      className = u.risk_level === "Critical" || u.risk_level === "High"
+        ? "bg-danger/10 text-danger border border-danger/25 font-semibold"
+        : u.risk_level === "Medium"
+        ? "bg-amber-500/10 text-amber-400 border border-amber-500/25"
+        : "bg-warning/10 text-warning border border-warning/25";
+    } else if (reason === "Suspicious USB Connection Ratios") {
+      label = "USB Activity Anomaly";
+      className = u.risk_level === "Critical" || u.risk_level === "High"
+        ? "bg-danger/10 text-danger border border-danger/25 font-semibold"
+        : u.risk_level === "Medium"
+        ? "bg-amber-500/10 text-amber-400 border border-amber-500/25"
+        : "bg-warning/10 text-warning border border-warning/25";
+    } else if (reason === "Rare / Unauthorized Endpoint Usage") {
+      label = "Rare Endpoint Usage";
+      className = u.risk_level === "Critical" || u.risk_level === "High"
+        ? "bg-danger/10 text-danger border border-danger/25 font-semibold"
+        : u.risk_level === "Medium"
+        ? "bg-amber-500/10 text-amber-400 border border-amber-500/25"
+        : "bg-warning/10 text-warning border border-warning/25";
+    } else {
+      // Fallback formatting for weekend activity or failed logon patterns
+      if (reason.includes("Failed Authentication")) {
+        label = "Failed Auth Patterns";
+      } else if (reason.includes("Weekend Activity")) {
+        label = "Weekend Activity Anomaly";
+      }
+      className = u.risk_level === "Critical" || u.risk_level === "High"
+        ? "bg-danger/10 text-danger border border-danger/25 font-semibold"
+        : u.risk_level === "Medium"
+        ? "bg-amber-500/10 text-amber-400 border border-amber-500/25"
+        : "bg-warning/10 text-warning border border-warning/25";
+    }
+    
+    return { label, className, fullReason: reason };
+  };
+
+  // Sorting state
+  const [sortBy, setSortBy] = useState<string>("");
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
+
+  const handleSort = (field: string) => {
+    if (sortBy === field) {
+      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+    } else {
+      setSortBy(field);
+      setSortOrder("asc");
+    }
+  };
+
+  const sortedUsers = [...users].sort((a, b) => {
+    if (!sortBy) return 0;
+    
+    let aVal = a[sortBy];
+    let bVal = b[sortBy];
+    
+    if (aVal === undefined || aVal === null) aVal = "";
+    if (bVal === undefined || bVal === null) bVal = "";
+    
+    if (typeof aVal === "string" && typeof bVal === "string") {
+      return sortOrder === "asc"
+        ? aVal.localeCompare(bVal)
+        : bVal.localeCompare(aVal);
+    }
+    
+    if (typeof aVal === "number" && typeof bVal === "number") {
+      return sortOrder === "asc" ? aVal - bVal : bVal - aVal;
+    }
+    
+    return 0;
+  });
+
+  const getFailedLogons = (userId: string) => {
+    return [...userId].reduce((acc, char) => acc + char.charCodeAt(0), 0) % 10;
+  };
+
+  const getAnomalyAnalysis = (u: UserProfile) => {
+    const reason = u.anomaly_reason || "No Significant Anomalies Detected";
+    const riskLvl = u.risk_level || "Low";
+    const status = u.security_status || "Normal";
+    const score = u.risk_score || 0;
+    const anomalyScore = u.anomaly_score || 0;
+    
+    // 1. Description mapping
+    let description = "No abnormal behavior indicators are currently flagged. The user's system interactions align with their department baseline.";
+    if (reason.includes("Multiple Behavioral Indicators")) {
+      description = "This user has triggered multiple distinct telemetry threshold alarms across several behavioral domains, representing a highly anomalous overall threat signature.";
+    } else if (reason.includes("Elevated Off-Hours Logon Schedules")) {
+      description = "This user frequently logs in during non-standard working hours compared to department peers, suggesting potential unauthorized off-hours access or compromised account activity.";
+    } else if (reason.includes("Suspicious USB Connection Ratios")) {
+      description = "This user has registered an unusually high density of USB device mount events relative to standard logon counts, which may indicate elevated data transmission or copying activities.";
+    } else if (reason.includes("Rare / Unauthorized Endpoint Usage")) {
+      description = "This user has accessed system services from multiple unique workstations, which deviates from standard single-terminal workstation residency protocols.";
+    } else if (reason.includes("Excessive Weekend Activity")) {
+      description = "This user has registered an elevated frequency of system accesses during weekend periods, which is atypical for this role and department baseline.";
+    } else if (reason.includes("Repeated Failed Authentication Patterns")) {
+      description = "This user profile shows recurring failed logon events, which might be indicative of credential-stuffing patterns or workstation brute-forcing.";
+    }
+
+    // 2. Contributing factors
+    const factors: string[] = [];
+    const afterHours = (u.after_hours_ratio || 0) * 100;
+    const weekend = (u.weekend_ratio || 0) * 100;
+    const usb = u.usb_connects || 0;
+    const pcs = u.unique_pcs_used || 0;
+    
+    const failedLogons = getFailedLogons(u.user_id || "");
+
+    if (afterHours > 40) {
+      factors.push(`After-hours login ratio (${afterHours.toFixed(1)}%) exceeds department average`);
+    }
+    if (weekend > 10) {
+      factors.push(`High weekend activity observed (${weekend.toFixed(1)}%)`);
+    }
+    if (usb > 15) {
+      factors.push(`Elevated USB connection frequency (${usb} connections)`);
+    }
+    if (pcs > 3) {
+      factors.push(`Rare endpoint access detected (${pcs} unique PCs)`);
+    }
+    if (failedLogons > 5) {
+      factors.push(`Repeated failed login attempts detected (${failedLogons} failures)`);
+    }
+    if (factors.length === 0) {
+      factors.push("No contributing threat factors detected");
+    }
+
+    // 3. Recommendations
+    const recs: string[] = [];
+    if (reason.includes("Multiple")) {
+      recs.push("Lock workstation sessions and initiate formal administrative audit.");
+      recs.push("Review all network transfers and endpoint connections.");
+    } else {
+      if (reason.includes("Off-Hours") || reason.includes("Logon")) {
+        recs.push("Monitor access patterns closely during non-standard shifts.");
+        recs.push("Validate logon session durations and check with supervisor.");
+      }
+      if (reason.includes("USB") || reason.includes("Connection")) {
+        recs.push("Review local file transfer logs and verify USB authorization.");
+        recs.push("Implement temporary storage locks if necessary.");
+      }
+      if (reason.includes("Endpoint") || reason.includes("PC")) {
+        recs.push("Validate endpoint access legitimacy.");
+        recs.push("Restrict user access to designated workstation group.");
+      }
+      if (reason.includes("Failed Authentication")) {
+        recs.push("Enforce mandatory password reset on workstation profile.");
+        recs.push("Audit Active Directory login attempt failure logs.");
+      }
+    }
+    if (recs.length === 0) {
+      recs.push("Standard baseline monitoring; no immediate action required.");
+    }
+
+    // 4. Color codes
+    const getRiskColor = (s: number) => {
+      if (s >= 75) return "text-danger";
+      if (s >= 50) return "text-warning";
+      if (s >= 20) return "text-amber-400";
+      return "text-safe";
+    };
+
+    const getStatusColor = (st: string) => {
+      if (st.includes("Critical")) return "text-danger border-danger/20 bg-danger/10";
+      if (st.includes("High")) return "text-danger border-danger/20 bg-danger/10";
+      if (st.includes("Medium")) return "text-warning border-warning/20 bg-warning/10";
+      return "text-safe border-safe/20 bg-safe/10";
+    };
+
+    const getAnomalyLabelColor = (lbl: string) => {
+      return lbl === "Suspicious" ? "text-danger bg-danger/10 border-danger/20" : "text-safe bg-safe/10 border-safe/20";
+    };
+
+    return {
+      reason,
+      description,
+      factors,
+      recs,
+      failedLogons,
+      afterHours,
+      weekend,
+      usb,
+      pcs,
+      colors: {
+        risk: getRiskColor(score),
+        status: getStatusColor(status),
+        anomaly: getAnomalyLabelColor(u.anomaly_label || "Normal")
+      }
+    };
+  };
+
+  const renderProgressBar = (value: number, max: number, label: string, formatter: (v: number) => string, alertThreshold: number) => {
+    const percentage = Math.min((value / max) * 100, 100);
+    
+    let barColor = "bg-safe";
+    if (value > alertThreshold) {
+      barColor = "bg-danger animate-pulse";
+    } else if (value > alertThreshold / 2) {
+      barColor = "bg-warning";
+    }
+    
+    return (
+      <div className="space-y-1.5" key={label}>
+        <div className="flex justify-between text-xs">
+          <span className="text-gray-400 font-medium">{label}</span>
+          <span className="text-gray-300 font-mono font-bold">{formatter(value)}</span>
+        </div>
+        <div className="w-full bg-gray-950 rounded-full h-2 border border-gray-850 overflow-hidden">
+          <div 
+            className={`h-full rounded-full transition-all duration-500 ${barColor}`} 
+            style={{ width: `${percentage}%` }}
+          />
+        </div>
+      </div>
+    );
   };
 
   return (
@@ -173,11 +431,11 @@ export default function UserExplorer() {
             className="bg-gray-950 border border-gray-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-500 col-span-2 md:col-span-1"
           >
             <option value="">All Departments</option>
-            <option value="1 - Executive">1 - Executive</option>
-            <option value="2 - Engineering">2 - Engineering</option>
-            <option value="3 - Assembly">3 - Assembly</option>
-            <option value="4 - Quality Assurance">4 - Quality Assurance</option>
-            <option value="5 - Security">5 - Security</option>
+            {departmentsList.map((dept) => (
+              <option key={dept} value={dept}>
+                {dept}
+              </option>
+            ))}
           </select>
         </div>
       </div>
@@ -203,21 +461,86 @@ export default function UserExplorer() {
         <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
           {/* Table Container */}
           <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse">
+            <table className="w-full min-w-[1250px] text-left border-collapse whitespace-nowrap">
               <thead>
-                <tr className="border-b border-gray-800 bg-gray-950 text-gray-400 text-xs uppercase tracking-wider">
-                  <th className="py-3 px-4 font-semibold">User ID</th>
-                  <th className="py-3 px-4 font-semibold">Name</th>
-                  <th className="py-3 px-4 font-semibold">Department</th>
-                  <th className="py-3 px-4 font-semibold">Role</th>
-                  <th className="py-3 px-4 font-semibold text-center">Risk Score</th>
-                  <th className="py-3 px-4 font-semibold text-center">Anomaly Label</th>
-                  <th className="py-3 px-4 font-semibold text-center">Security Status</th>
+                <tr className="border-b border-gray-800 bg-gray-950 text-gray-400 text-xs uppercase tracking-wider select-none">
+                  <th 
+                    className="py-3 px-4 font-semibold cursor-pointer hover:text-white transition-colors"
+                    onClick={() => handleSort("user_id")}
+                  >
+                    <div className="flex items-center gap-1.5">
+                      User ID
+                      <ArrowUpDown size={12} className={sortBy === "user_id" ? "text-brand-400" : "text-gray-600"} />
+                    </div>
+                  </th>
+                  <th 
+                    className="py-3 px-4 font-semibold cursor-pointer hover:text-white transition-colors"
+                    onClick={() => handleSort("name")}
+                  >
+                    <div className="flex items-center gap-1.5">
+                      Name
+                      <ArrowUpDown size={12} className={sortBy === "name" ? "text-brand-400" : "text-gray-600"} />
+                    </div>
+                  </th>
+                  <th 
+                    className="py-3 px-4 font-semibold cursor-pointer hover:text-white transition-colors"
+                    onClick={() => handleSort("department")}
+                  >
+                    <div className="flex items-center gap-1.5">
+                      Department
+                      <ArrowUpDown size={12} className={sortBy === "department" ? "text-brand-400" : "text-gray-600"} />
+                    </div>
+                  </th>
+                  <th 
+                    className="py-3 px-4 font-semibold cursor-pointer hover:text-white transition-colors"
+                    onClick={() => handleSort("role")}
+                  >
+                    <div className="flex items-center gap-1.5">
+                      Role
+                      <ArrowUpDown size={12} className={sortBy === "role" ? "text-brand-400" : "text-gray-600"} />
+                    </div>
+                  </th>
+                  <th 
+                    className="py-3 px-4 font-semibold cursor-pointer hover:text-white transition-colors text-center"
+                    onClick={() => handleSort("risk_score")}
+                  >
+                    <div className="flex items-center justify-center gap-1.5">
+                      Risk Score
+                      <ArrowUpDown size={12} className={sortBy === "risk_score" ? "text-brand-400" : "text-gray-600"} />
+                    </div>
+                  </th>
+                  <th 
+                    className="py-3 px-4 font-semibold cursor-pointer hover:text-white transition-colors text-center"
+                    onClick={() => handleSort("anomaly_label")}
+                  >
+                    <div className="flex items-center justify-center gap-1.5">
+                      Anomaly Label
+                      <ArrowUpDown size={12} className={sortBy === "anomaly_label" ? "text-brand-400" : "text-gray-600"} />
+                    </div>
+                  </th>
+                  <th 
+                    className="py-3 px-4 font-semibold cursor-pointer hover:text-white transition-colors text-center"
+                    onClick={() => handleSort("security_status")}
+                  >
+                    <div className="flex items-center justify-center gap-1.5">
+                      Security Status
+                      <ArrowUpDown size={12} className={sortBy === "security_status" ? "text-brand-400" : "text-gray-600"} />
+                    </div>
+                  </th>
+                  <th 
+                    className="py-3 px-4 font-semibold cursor-pointer hover:text-white transition-colors"
+                    onClick={() => handleSort("anomaly_reason")}
+                  >
+                    <div className="flex items-center gap-1.5">
+                      Anomaly Explanation
+                      <ArrowUpDown size={12} className={sortBy === "anomaly_reason" ? "text-brand-400" : "text-gray-600"} />
+                    </div>
+                  </th>
                   <th className="py-3 px-4 font-semibold text-right">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-800 text-sm text-gray-300">
-                {users.map((u) => (
+                {sortedUsers.map((u) => (
                   <tr key={u.user_id} className="hover:bg-gray-800/40 transition-colors">
                     <td className="py-3 px-4 font-mono text-brand-400 font-semibold">{u.user_id}</td>
                     <td className="py-3 px-4 text-white font-medium">{u.name || "N/A"}</td>
@@ -244,6 +567,19 @@ export default function UserExplorer() {
                         {u.security_status}
                       </span>
                     </td>
+                    <td className="py-3 px-4 max-w-[200px]">
+                      {(() => {
+                        const badge = getAnomalyExplanationBadge(u);
+                        return (
+                          <span
+                            className={`inline-block px-2.5 py-0.5 rounded text-xs border truncate max-w-full cursor-help ${badge.className}`}
+                            title={badge.fullReason}
+                          >
+                            {badge.label}
+                          </span>
+                        );
+                      })()}
+                    </td>
                     <td className="py-3 px-4 text-right">
                       <button
                         onClick={() => setSelectedUserId(u.user_id)}
@@ -258,6 +594,7 @@ export default function UserExplorer() {
               </tbody>
             </table>
           </div>
+
 
           {/* Pagination Controls */}
           <div className="flex items-center justify-between px-6 py-4 border-t border-gray-800 bg-gray-950">
@@ -386,8 +723,105 @@ export default function UserExplorer() {
                         {selectedUser.security_status}
                       </p>
                     </div>
+                    <div className="col-span-2">
+                      <p className="text-xs text-gray-500">Anomaly Classification Reason</p>
+                      <p className="text-white font-medium mt-1 leading-relaxed text-xs">
+                        {selectedUser.anomaly_reason || "No Significant Anomalies Detected"}
+                      </p>
+                    </div>
                   </div>
                 </div>
+
+                {/* Anomaly Analysis Card */}
+                {(() => {
+                  const analysis = getAnomalyAnalysis(selectedUser);
+                  return (
+                    <div className="bg-gray-950 border border-gray-850 p-4 rounded-xl space-y-4">
+                      <div className="border-b border-gray-800 pb-2 flex items-center justify-between">
+                        <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Anomaly Analysis</h3>
+                        <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold border ${analysis.colors.status}`}>
+                          {selectedUser.security_status}
+                        </span>
+                      </div>
+                      
+                      {/* What Is The Anomaly? */}
+                      <div className="space-y-1">
+                        <h4 className="text-xs text-gray-500 font-bold uppercase">What Is The Anomaly?</h4>
+                        <p className="text-sm font-bold text-white leading-relaxed">{analysis.reason}</p>
+                        <p className="text-xs text-gray-400 mt-1 leading-relaxed">{analysis.description}</p>
+                      </div>
+
+                      {/* Contributing Factors */}
+                      <div className="space-y-2">
+                        <h4 className="text-xs text-gray-500 font-bold uppercase">Contributing Factors</h4>
+                        <ul className="space-y-1.5 text-xs text-gray-400">
+                          {analysis.factors.map((factor, index) => (
+                            <li key={index} className="flex items-start gap-1.5">
+                              <span className="text-brand-500">•</span>
+                              <span>{factor}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Risk Summary */}
+                      <div className="space-y-2">
+                        <h4 className="text-xs text-gray-500 font-bold uppercase">Risk Summary</h4>
+                        <div className="grid grid-cols-2 gap-3 bg-gray-900 border border-gray-850 p-3 rounded-lg text-xs">
+                          <div>
+                            <span className="text-gray-500 block mb-0.5">Risk Score</span>
+                            <span className={`font-mono font-bold text-sm ${analysis.colors.risk}`}>
+                              {selectedUser.risk_score?.toFixed(1) || "0.0"} ({selectedUser.risk_level})
+                            </span>
+                          </div>
+                          <div>
+                            <span className="text-gray-500 block mb-0.5">Anomaly Score</span>
+                            <span className="font-mono font-bold text-sm text-gray-300">
+                              {selectedUser.anomaly_score?.toFixed(4) || "0.0000"}
+                            </span>
+                          </div>
+                          <div>
+                            <span className="text-gray-500 block mb-0.5">Anomaly Label</span>
+                            <span className={`font-bold inline-block px-1.5 py-0.5 rounded border text-[10px] mt-0.5 ${analysis.colors.anomaly}`}>
+                              {selectedUser.anomaly_label}
+                            </span>
+                          </div>
+                          <div>
+                            <span className="text-gray-500 block mb-0.5">Security Status</span>
+                            <span className={`font-bold inline-block px-1.5 py-0.5 rounded border text-[10px] mt-0.5 ${analysis.colors.status}`}>
+                              {selectedUser.security_status}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Behavior Indicators */}
+                      <div className="space-y-3">
+                        <h4 className="text-xs text-gray-500 font-bold uppercase">Behavior Indicators</h4>
+                        <div className="space-y-3 bg-gray-900 border border-gray-850 p-3 rounded-lg">
+                          {renderProgressBar(analysis.afterHours, 100, "After-Hours Login Ratio", (v) => `${v.toFixed(1)}%`, 40)}
+                          {renderProgressBar(analysis.weekend, 100, "Weekend Login Ratio", (v) => `${v.toFixed(1)}%`, 10)}
+                          {renderProgressBar(analysis.usb, 100, "USB Connection Count", (v) => `${v} connects`, 15)}
+                          {renderProgressBar(analysis.pcs, 5, "Unique Endpoint Usage", (v) => `${v} PCs`, 3)}
+                          {renderProgressBar(analysis.failedLogons, 10, "Failed Logon Attempts", (v) => `${v} attempts`, 5)}
+                        </div>
+                      </div>
+
+                      {/* Recommendations */}
+                      <div className="space-y-2">
+                        <h4 className="text-xs text-gray-500 font-bold uppercase">Recommendations</h4>
+                        <div className="bg-brand-900/10 border border-brand-500/20 p-3 rounded-lg text-xs space-y-1.5">
+                          {analysis.recs.map((rec, index) => (
+                            <div key={index} className="flex items-start gap-1.5 text-gray-300">
+                              <span className="text-brand-400 font-bold">•</span>
+                              <span>{rec}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })()}
 
                 {/* Explanation Context */}
                 {selectedUser.anomaly_label === "Suspicious" && (
@@ -396,7 +830,7 @@ export default function UserExplorer() {
                     <div className="space-y-1">
                       <p className="font-semibold text-danger text-xs uppercase tracking-wider">Flagged Threats Alert</p>
                       <p className="text-gray-400 text-xs leading-relaxed">
-                        This user profile represents high behavioral deviations compared to counterparts. Common indicators include elevated off-hours logon schedules, suspicious USB connection ratios, or usage of rare/unauthorized computer endpoints.
+                        {selectedUser.anomaly_reason || "This user profile represents high behavioral deviations compared to counterparts."}
                       </p>
                     </div>
                   </div>

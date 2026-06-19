@@ -1,0 +1,4 @@
+user_id,total_logins,total_logoffs,active_days,avg_logins_per_day,unique_pcs_used,after_hours_logins,weekend_logins
+NFC1001,1,1,1,1.0,1,1,1
+NFC1002,1,1,1,1.0,1,1,1
+NFC1003,1,1,2,0.5,1,1,1

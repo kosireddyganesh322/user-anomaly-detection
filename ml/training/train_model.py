@@ -31,7 +31,11 @@ FEATURE_COLS = [
     'weekend_ratio'
 ]
 
-def train(features_path: str) -> None:
+def train(
+    features_path: str,
+    model_path: str = "ml/models/isolation_forest.pkl",
+    scaler_path: str = "ml/models/scaler.pkl"
+) -> None:
     logger.info(f"Starting Isolation Forest training pipeline on {features_path}")
     try:
         # Resolve path fallback if needed
@@ -75,11 +79,9 @@ def train(features_path: str) -> None:
         model.fit(X_scaled)
 
         # 3. Save serialized pickles
-        models_dir = "ml/models"
-        os.makedirs(models_dir, exist_ok=True)
-
-        model_path = os.path.join(models_dir, "isolation_forest.pkl")
-        scaler_path = os.path.join(models_dir, "scaler.pkl")
+        models_dir = os.path.dirname(model_path)
+        if models_dir:
+            os.makedirs(models_dir, exist_ok=True)
 
         logger.info(f"Saving scaler to {scaler_path}...")
         with open(scaler_path, 'wb') as f:

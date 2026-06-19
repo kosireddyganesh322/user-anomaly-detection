@@ -1,0 +1,4 @@
+user_id,name,email,role,department,team,manager,total_logins,total_logoffs,active_days,avg_logins_per_day,unique_pcs_used,after_hours_logins,weekend_logins,usb_connects,usb_disconnects,after_hours_usb,weekend_usb,login_device_ratio,after_hours_ratio,weekend_ratio,risk_score,risk_level
+NFC1001,Aarav Sharma,NFC1001@company.com,Production Engineer,Fuel Fabrication,Fabrication-A,Karan Singh,1,1,1,1.0,1,1,1,1,0,1,1,1.0,1.0,1.0,10.55,Low
+NFC1002,Vivaan Patel,NFC1002@company.com,Security Guard,Security Operations,Patrol-B,Karan Singh,1,1,1,1.0,1,1,1,0,0,0,0,0.0,1.0,1.0,1.9,Low
+NFC1003,Aditya Reddy,NFC1003@company.com,QA Inspector,Quality Assurance,Audit-C,Rohan Mehta,1,1,2,0.5,1,1,1,1,0,1,1,1.0,1.0,1.0,10.55,Low

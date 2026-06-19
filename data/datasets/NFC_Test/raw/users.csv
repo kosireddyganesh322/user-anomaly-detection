@@ -1,0 +1,4 @@
+user_id,employee_name,department,role,start_date,email,team
+NFC1001,Aarav Sharma,Fuel Fabrication,Production Engineer,2010-01-01,NFC1001@company.com,Fabrication-A
+NFC1002,Vivaan Patel,Security Operations,Security Guard,2010-01-01,NFC1002@company.com,Patrol-B
+NFC1003,Aditya Reddy,Quality Assurance,QA Inspector,2010-01-01,NFC1003@company.com,Audit-C
